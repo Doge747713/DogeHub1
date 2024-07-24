@@ -3,7 +3,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
 local LocalPlayer = Players.LocalPlayer
-local radius = 800  -- Adjusted radius
+local radius = 800  -- Adjusted radius for the circle
 local menuGui
 local showingVault = false
 local targetPlayerName = nil
@@ -11,6 +11,7 @@ local gameId = game.PlaceId
 local circleGui
 local originalPositions = {}
 local teleportEnabled = true  -- Teleportation is enabled by default
+print("Made By Doge")
 
 -- Create the white circle in the middle of the screen
 local function createCircleGui()
@@ -231,7 +232,7 @@ local function checkMouseTarget()
     end
 end
 
--- Handle input for toggling teleportation
+-- Handle input for toggling teleportation and vault visibility
 local function onInput(input)
     if input.KeyCode == Enum.KeyCode.B then
         teleportEnabled = not teleportEnabled
