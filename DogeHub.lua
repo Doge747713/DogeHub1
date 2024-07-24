@@ -11,6 +11,7 @@ local gameId = game.PlaceId
 local circleGui
 local originalPositions = {}
 local teleportEnabled = true  -- Teleportation is enabled by default
+local espEnabled = true  -- Toggle ESP feature
 print("Made By Doge")
 
 -- Create the white circle in the middle of the screen
@@ -201,6 +202,65 @@ local function getPlayerData(targetPlayerName)
     return clothing, equipment, inventory, vault
 end
 
+-- Create ESP (box, tracer, and name display)
+local function createESP(player)
+    if not espEnabled then return end
+
+    local character = player.Character
+    if not character then return end
+
+    local head = character:FindFirstChild("Head")
+    if not head then return end
+
+    -- Box
+    local boxGui = Instance.new("BillboardGui")
+    boxGui.Size = UDim2.new(0, 100, 0, 100)
+    boxGui.StudsOffset = Vector3.new(0, 3, 0)
+    boxGui.AlwaysOnTop = true
+    boxGui.Parent = character
+
+    local boxFrame = Instance.new("Frame")
+    boxFrame.Size = UDim2.new(1, 0, 1, 0)
+    boxFrame.BorderSizePixel = 2
+    boxFrame.BorderColor3 = Color3.fromRGB(255, 0, 0)
+    boxFrame.BackgroundTransparency = 1
+    boxFrame.Parent = boxGui
+
+    -- Name
+    local nameLabel = Instance.new("TextLabel")
+    nameLabel.Size = UDim2.new(1, 0, 0, 30)
+    nameLabel.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+    nameLabel.BackgroundTransparency = 0.5
+    nameLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+    nameLabel.Text = player.Name
+    nameLabel.Parent = boxGui
+
+    -- Tracer
+    local tracerLine = Instance.new("Line")
+    tracerLine.Color = Color3.fromRGB(0, 255, 0)
+    tracerLine.Thickness = 2
+    tracerLine.Parent = game.CoreGui
+    local function updateTracer()
+        local camera = workspace.CurrentCamera
+        local screenPos = camera:WorldToScreenPoint(head.Position)
+        tracerLine.From = Vector2.new(camera.ViewportSize.X / 2, camera.ViewportSize.Y)
+        tracerLine.To = Vector2.new(screenPos.X, screenPos.Y)
+    end
+    RunService.RenderStepped:Connect(updateTracer)
+end
+
+-- Remove ESP
+local function removeESP(player)
+    if not player.Character then return end
+
+    local character = player.Character
+    for _, child in ipairs(character:GetChildren()) do
+        if child:IsA("BillboardGui") then
+            child:Destroy()
+        end
+    end
+end
+
 -- Check mouse target
 local function checkMouseTarget()
     local mouse = LocalPlayer:GetMouse()
@@ -216,6 +276,12 @@ local function checkMouseTarget()
                 end
                 local clothing, equipment, inventory, vault = getPlayerData(targetPlayer.Name)
                 createInventoryMenu(targetPlayer.Name, clothing, equipment, inventory, vault)
+                
+                -- Add ESP to the player
+                createESP(targetPlayer)
+            else
+                -- Remove ESP if not within circle
+                removeESP(targetPlayer)
             end
         end
     else
@@ -229,10 +295,16 @@ local function checkMouseTarget()
                 end
             end
         end
+        -- Remove ESP for all players
+        for _, player in ipairs(Players:GetPlayers()) do
+            if player ~= LocalPlayer then
+                removeESP(player)
+            end
+        end
     end
 end
 
--- Handle input for toggling teleportation and vault visibility
+-- Handle input for toggling teleportation, vault visibility, and ESP
 local function onInput(input)
     if input.KeyCode == Enum.KeyCode.B then
         teleportEnabled = not teleportEnabled
@@ -248,13 +320,16 @@ local function onInput(input)
                 createInventoryMenu(playerName, clothing, equipment, inventory, vault)
             end
         end
+    elseif input.KeyCode == Enum.KeyCode.E then
+        espEnabled = not espEnabled
+        print("ESP " .. (espEnabled and "Enabled" or "Disabled"))
     end
 end
 
 -- Connect input event
 UserInputService.InputBegan:Connect(onInput)
 
--- Update GUI and teleport player every frame
+-- Update GUI, teleport player, and ESP every frame
 RunService.RenderStepped:Connect(checkMouseTarget)
 
 -- Create initial circle GUI
