@@ -322,6 +322,16 @@ local function onInput(input)
                 createInventoryMenu(playerName, clothing, equipment, inventory, vault)
             end
         end
+                elseif input.KeyCode == Enum.KeyCode.U then
+            -- Toggle Night Vision
+            nightVisionEnabled = not nightVisionEnabled
+            if nightVisionEnabled then
+                game.Lighting.Ambient = Color3.fromRGB(0, 255, 0)  -- Example color for night vision
+                game.Lighting.Brightness = 2  -- Increase brightness for night vision
+            else
+                game.Lighting.Ambient = Color3.fromRGB(128, 128, 128)  -- Default ambient color
+                game.Lighting.Brightness = 1  -- Default brightness
+            end
     elseif input.KeyCode == Enum.KeyCode.E then
         espEnabled = not espEnabled
         print("ESP " .. (espEnabled and "Enabled" or "Disabled"))
