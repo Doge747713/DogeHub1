@@ -306,7 +306,7 @@ end
 
 -- Handle input for toggling teleportation, vault visibility, and ESP
 local function onInput(input)
-    if input.KeyCode == Enum.KeyCode.B then
+    if input.KeyCode == Enum.KeyCode.P then
         teleportEnabled = not teleportEnabled
         print("Teleportation " .. (teleportEnabled and "Enabled" or "Disabled"))
     elseif input.KeyCode == Enum.KeyCode.Z and gameId == 7336302630 then
