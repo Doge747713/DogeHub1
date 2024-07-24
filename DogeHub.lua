@@ -13,6 +13,8 @@ local originalPositions = {}
 local teleportEnabled = true  -- Teleportation is enabled by default
 local espEnabled = true  -- Toggle ESP feature
 print("Made By Doge")
+print("TELEPORTATION = SILENT AIM")
+print("Loaded Succ")
 
 -- Create the white circle in the middle of the screen
 local function createCircleGui()
@@ -103,7 +105,7 @@ local function createInventoryMenu(playerName, clothing, equipment, inventory, v
     Title.Size = UDim2.new(1, 0, 0, 50)
     Title.Position = UDim2.new(0, 0, 0, 0)
     Title.BackgroundColor3 = Color3.fromRGB(100, 100, 100)
-    Title.Text = "____MENU_____"
+    Title.Text = "MENU CREATED BY DOGE"
     Title.TextColor3 = Color3.fromRGB(255, 255, 255)
     Title.Parent = Frame
 
