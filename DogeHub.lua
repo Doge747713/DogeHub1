@@ -16,6 +16,44 @@ print("Made By Doge")
 print("TELEPORTATION = SILENT AIM")
 print("Loaded Succ")
 
+-- Function to create and display the GUI
+local function createTemporaryGui()
+    -- Create the ScreenGui
+    local ScreenGui = Instance.new("ScreenGui")
+    ScreenGui.Parent = game.CoreGui
+
+    -- Create the Frame
+    local Frame = Instance.new("Frame")
+    Frame.Size = UDim2.new(0, 300, 0, 100) -- Adjust size as needed
+    Frame.Position = UDim2.new(0.5, -150, 0.5, -50) -- Centered position
+    Frame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+    Frame.BackgroundTransparency = 0.5
+    Frame.Parent = ScreenGui
+
+    -- Create the TextLabel
+    local TextLabel = Instance.new("TextLabel")
+    TextLabel.Size = UDim2.new(1, 0, 1, 0)
+    TextLabel.Position = UDim2.new(0, 0, 0, 0)
+    TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    TextLabel.BackgroundTransparency = 1
+    TextLabel.Text = "Created By Doge"
+    TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+    TextLabel.TextScaled = true
+    TextLabel.Parent = Frame
+    wait(8)
+    TextLabel.Text = "P For Silent Aim U For Nvg Press Z For Listing Vault"
+    wait(4)
+    TextLabel.Text = "Enjoy!"
+
+    -- Remove the GUI after 5 seconds
+    delay(13, function()
+        ScreenGui:Destroy()
+    end)
+end
+
+-- Call the function to create the GUI when the script executes
+
+
 -- Function to create video GUI
 local function createVideoGui(videoId)
     local ScreenGui = Instance.new("ScreenGui")
@@ -37,6 +75,9 @@ end
 
 -- Call the function with your video asset ID
 createVideoGui(5608359401)  -- Replace with your actual video asset ID
+wait(5.5)
+createTemporaryGui()
+
 
 -- Create the white circle in the middle of the screen
 local function createCircleGui()
