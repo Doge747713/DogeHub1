@@ -16,6 +16,28 @@ print("Made By Doge")
 print("TELEPORTATION = SILENT AIM")
 print("Loaded Succ")
 
+-- Function to create video GUI
+local function createVideoGui(videoId)
+    local ScreenGui = Instance.new("ScreenGui")
+    ScreenGui.Parent = game.CoreGui
+    
+    local VideoFrame = Instance.new("VideoFrame")
+    VideoFrame.Size = UDim2.new(1, 0, 1, 0)  -- Full screen size
+    VideoFrame.Position = UDim2.new(0, 0, 0, 0)
+    VideoFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+    VideoFrame.Video = "rbxassetid://" .. videoId
+    VideoFrame.Playing = true
+    VideoFrame.Parent = ScreenGui
+
+    -- Destroy video GUI after the video ends
+    VideoFrame.Ended:Connect(function()
+        ScreenGui:Destroy()
+    end)
+end
+
+-- Call the function with your video asset ID
+createVideoGui(5608359401)  -- Replace with your actual video asset ID
+
 -- Create the white circle in the middle of the screen
 local function createCircleGui()
     if circleGui then circleGui:Destroy() end
