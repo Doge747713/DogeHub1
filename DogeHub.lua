@@ -326,11 +326,11 @@ local function onInput(input)
             -- Toggle Night Vision
             nightVisionEnabled = not nightVisionEnabled
             if nightVisionEnabled then
-                game.Lighting.Ambient = Color3.fromRGB(0, 255, 0)  -- Example color for night vision
-                game.Lighting.Brightness = 2  -- Increase brightness for night vision
+                game.Lighting.Ambient = Color3.fromRGB(255,255,255)  -- Example color for night vision
+                game.Lighting.Brightness = 7  -- Increase brightness for night vision
             else
                 game.Lighting.Ambient = Color3.fromRGB(128, 128, 128)  -- Default ambient color
-                game.Lighting.Brightness = 1  -- Default brightness
+                game.Lighting.Brightness = 3  -- Default brightness
             end
     elseif input.KeyCode == Enum.KeyCode.E then
         espEnabled = not espEnabled
