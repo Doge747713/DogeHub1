@@ -106,7 +106,7 @@ end
 
 -- Call the function with your video asset ID
 createVideoGui(5608359401)  -- Replace with your actual video asset ID
-wait(5.5)
+wait(6.4)
 createTemporaryGui()
 
 
