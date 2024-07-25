@@ -3,7 +3,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
 local LocalPlayer = Players.LocalPlayer
-local radius = 800  -- Adjusted radius for the circle
+local radius = 1250  -- Adjusted radius for the circle
 local menuGui
 local showingVault = false
 local targetPlayerName = nil
