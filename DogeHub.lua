@@ -9,6 +9,7 @@ local showingVault = false
 local targetPlayerName = nil
 local gameId = game.PlaceId
 local circleGui
+print("31 çeken maymunlar garlandı sikip atıyorlar ahh")
 local originalPositions = {}
 local teleportEnabled = true  -- Teleportation is enabled by default
 local espEnabled = true  -- Toggle ESP feature
