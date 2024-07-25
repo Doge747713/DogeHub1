@@ -9,13 +9,43 @@ local showingVault = false
 local targetPlayerName = nil
 local gameId = game.PlaceId
 local circleGui
-print("31 çeken maymunlar garlandı sikip atıyorlar ahh")
 local originalPositions = {}
 local teleportEnabled = true  -- Teleportation is enabled by default
 local espEnabled = true  -- Toggle ESP feature
 print("Made By Doge")
 print("TELEPORTATION = SILENT AIM")
 print("Loaded Succ")
+
+-- LocalScript placed in StarterPlayerScripts
+
+-- Function to execute the desired action
+local function executeAction()
+    local player = game.Players.LocalPlayer
+    -- Wait for the GUI to be fully loaded
+    repeat
+        wait()
+    until player.PlayerGui:FindFirstChild("MainGui") and player.PlayerGui.MainGui:FindFirstChild("MainFrame") and player.PlayerGui.MainGui.MainFrame:FindFirstChild("ScreenEffects")
+
+    -- Set the visibility of the specific GUI element
+    local visor = player.PlayerGui.MainGui.MainFrame:FindFirstChild("ScreenEffects")
+    if visor then
+        visor.Visor.Visible = false
+    else
+        warn("AltynVisor not found!")
+    end
+end
+
+-- Connect the function to the player's character being added
+game.Players.LocalPlayer.CharacterAdded:Connect(function()
+    -- Run the action when the character is added
+    executeAction()
+end)
+
+-- Run the action immediately in case the character is already loaded
+if game.Players.LocalPlayer.Character then
+    executeAction()
+end
+
 
 -- Function to create and display the GUI
 local function createTemporaryGui()
