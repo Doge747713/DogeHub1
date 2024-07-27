@@ -62,6 +62,15 @@ mainTab:AddButton({
 })
 
 mainTab:AddButton({
+    Name = "Check For Target",
+    Callback = function()
+
+checkForTarget()
+        
+    end
+})
+
+mainTab:AddButton({
     Name = "Night Vision Keybind: U",
     Callback = function()
 
