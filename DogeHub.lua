@@ -12,6 +12,8 @@ local showingVault = false
 local targetPlayerName = nil
 local gameId = game.PlaceId
 local circleGui
+local espenabled22 = true  -- Variable to track ESP state
+local highlightCache = {}
 local originalPositions = {}
 local teleportEnabled = true  -- Teleportation is enabled by default
 local espEnabled = false  -- Toggle ESP feature
@@ -21,6 +23,84 @@ print("Loaded Succ")
 warn("System Error")
 
 badremote:Destroy()
+
+
+-- Function to create a highlight for a player
+local function createHighlight(player)
+    if player.Character and player.Character:FindFirstChild("Head") then
+        local highlight = Instance.new("Highlight")
+        highlight.Name = "ESPHighlight"  -- Give the highlight a name for easy removal
+        highlight.Parent = player.Character
+        highlight.FillColor = Color3.new(1, 0, 0) -- Red fill color
+        highlight.FillTransparency = 0.5 -- Transparency of the fill
+        highlight.OutlineColor = Color3.new(1, 1, 0) -- Yellow outline color
+        highlight.OutlineTransparency = 0.5 -- Transparency of the outline
+        
+        -- Store the highlight in the cache
+        highlightCache[player.UserId] = highlight
+    end
+end
+
+-- Function to remove highlight for a player
+local function removeHighlight(player)
+    local highlight = highlightCache[player.UserId]
+    if highlight then
+        highlight:Destroy()
+        highlightCache[player.UserId] = nil
+    end
+end
+
+-- Function to update highlights for all players
+local function updateHighlights()
+    if espenabled22 then
+        for _, player in pairs(Players:GetPlayers()) do
+            if player ~= Players.LocalPlayer and not highlightCache[player.UserId] then
+                createHighlight(player)
+            end
+        end
+    else
+        for _, player in pairs(Players:GetPlayers()) do
+            removeHighlight(player)
+        end
+    end
+end
+
+-- Function to toggle ESP
+local function toggleESP()
+    espenabled22 = not espenabled22
+    print("ESP " .. (espenabled22 and "Enabled" or "Disabled"))
+    updateHighlights()  -- Update highlights based on the new state
+end
+
+-- Connect to PlayerAdded and PlayerRemoving events
+Players.PlayerAdded:Connect(function(player)
+    player.CharacterAdded:Connect(function(character)
+        if espenabled22 then
+            createHighlight(player)
+        end
+    end)
+end)
+
+Players.PlayerRemoving:Connect(function(player)
+    removeHighlight(player)
+end)
+
+-- Call updateHighlights to initially create highlights for all players
+updateHighlights()
+
+-- Continuous highlight update
+RunService.RenderStepped:Connect(function()
+    if espenabled22 then
+        for _, player in pairs(Players:GetPlayers()) do
+            if player ~= Players.LocalPlayer and not highlightCache[player.UserId] then
+                createHighlight(player)
+            end
+        end
+    end
+end)
+
+-- This function can be called from your GUI or any other part of your script
+-- Example: toggleESP() to enable or disable the ESP
 
 --Anti Cheat Break
 
@@ -99,6 +179,8 @@ Credits:AddButton({
 
     end
 })
+
+
 
 Premium:AddButton({
     Name = "SOON!",
@@ -182,6 +264,13 @@ visualTab:AddButton({
     Name = "Night vision",
     Callback = function()
             
+    end
+})
+
+visualTab:AddButton({
+    Name = "ESP",
+    Callback = function()
+toggleESP()
     end
 })
 
