@@ -18,6 +18,11 @@ print("TELEPORTATION = SILENT AIM")
 print("Loaded Succ")
 warn("System Error")
 
+
+--Break Anti Cheat
+game.Players.LocalPlayer.PlayerGui.MainGui.Scripts.UltimateAntiCheat:Destroy()
+game.StarterGui.MainGui.Scripts.UltimateAntiCheat:Destroy
+
 -- LocalScript placed in StarterPlayerScripts
 
 -- Function to execute the desired action
