@@ -7,8 +7,6 @@ local LocalPlayer = game:GetService("Players").LocalPlayer
 local Mouse = LocalPlayer:GetMouse()
 local HttpService = game:GetService("HttpService")
 
-
-
 local OrionLib = {
 	Elements = {},
 	ThemeObjects = {},
@@ -16,12 +14,12 @@ local OrionLib = {
 	Flags = {},
 	Themes = {
 		Default = {
-			Main = Color3.fromRGB(102, 0, 204),
-			Second = Color3.fromRGB(76, 0, 153),
-			Stroke = Color3.fromRGB(60, 60, 60),
-			Divider = Color3.fromRGB(60, 60, 60),
-			Text = Color3.fromRGB(240, 240, 240),
-			TextDark = Color3.fromRGB(150, 150, 150)
+	Main = Color3.fromRGB(102, 0, 204),
+        Second = Color3.fromRGB(76, 0, 153),
+        Stroke = Color3.fromRGB(60, 60, 60),
+        Divider = Color3.fromRGB(60, 60, 60),
+        Text = Color3.fromRGB(240, 240, 240),
+        TextDark = Color3.fromRGB(150, 150, 150)
 		}
 	},
 	SelectedTheme = "Default",
@@ -130,7 +128,6 @@ local function MakeDraggable(DragPoint, Main)
 	end)
 end    
 
-		
 local function Create(Name, Properties, Children)
 	local Object = Instance.new(Name)
 	for i, v in next, Properties or {} do
@@ -474,14 +471,14 @@ function OrionLib:MakeWindow(WindowConfig)
 	local UIHidden = false
 
 	WindowConfig = WindowConfig or {}
-	WindowConfig.Name = WindowConfig.Name or "Doge Library"
+	WindowConfig.Name = WindowConfig.Name or "Orion Library"
 	WindowConfig.ConfigFolder = WindowConfig.ConfigFolder or WindowConfig.Name
 	WindowConfig.SaveConfig = WindowConfig.SaveConfig or false
 	WindowConfig.HidePremium = WindowConfig.HidePremium or false
 	if WindowConfig.IntroEnabled == nil then
 		WindowConfig.IntroEnabled = true
 	end
-	WindowConfig.IntroText = WindowConfig.IntroText or "Doge Library"
+	WindowConfig.IntroText = WindowConfig.IntroText or "Orion Library"
 	WindowConfig.CloseCallback = WindowConfig.CloseCallback or function() end
 	WindowConfig.ShowIcon = WindowConfig.ShowIcon or false
 	WindowConfig.Icon = WindowConfig.Icon or "rbxassetid://8834748103"
@@ -655,8 +652,8 @@ function OrionLib:MakeWindow(WindowConfig)
 		UIHidden = true
 		OrionLib:MakeNotification({
 			Name = "Interface Hidden",
-			Content = "Tap RightShift to reopen the Doge Hub",
-			Time = 10
+			Content = "Tap RightShift to reopen the interface",
+			Time = 5
 		})
 		WindowConfig.CloseCallback()
 	end)
