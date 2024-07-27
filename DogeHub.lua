@@ -256,7 +256,27 @@ local function isWithinCircle(targetPosition)
     return distance <= circleRadius
 end
 
--- Teleport player in front of the local player
+-- Function to aim at the target player's head
+local function silentAim(targetPlayer)
+    if not teleportEnabled then return end
+
+    local character = targetPlayer.Character
+    if not character or not character:FindFirstChild("Head") then return end
+
+    local head = character.Head
+
+    -- Set the camera's CFrame to aim at the target player's head
+    local camera = workspace.CurrentCamera
+    local aimPosition = head.Position + Vector3.new(0, 0.5, 0) -- Adjust height if necessary
+
+    -- Calculate the new CFrame that points to the target player's head
+    camera.CFrame = CFrame.new(camera.CFrame.Position, aimPosition)
+
+    -- Optionally trigger shooting (implement the appropriate remote event for your game)
+    -- Example: game.ReplicatedStorage:WaitForChild("ShootEvent"):FireServer(aimPosition)
+end
+
+-- Teleport player to in front of the local player (if needed)
 local function teleportPlayer(targetPlayer)
     if not teleportEnabled then return end
 
@@ -274,8 +294,7 @@ local function teleportPlayer(targetPlayer)
     -- Move player to in front of the local player
     local camera = workspace.CurrentCamera
     local forwardVector = camera.CFrame.LookVector * 10 -- Adjust the distance as needed
-    local newPosition = camera.CFrame.Position + forwardVector
-    head.CFrame = CFrame.new(newPosition)
+    head.CFrame = CFrame.new(camera.CFrame.Position + forwardVector)
 end
 
 -- Revert player to their original position
@@ -290,6 +309,22 @@ local function revertPlayerPosition(targetPlayer)
     if originalPositions[targetPlayer.Name] then
         head.CFrame = CFrame.new(originalPositions[targetPlayer.Name])
         originalPositions[targetPlayer.Name] = nil
+    end
+end
+
+-- Example of using the silent aim function when targeting a player
+local function checkForTarget()
+    local mouse = LocalPlayer:GetMouse()
+    local target = mouse.Target
+    if target and target.Parent and Players:FindFirstChild(target.Parent.Name) then
+        local targetPlayer = Players:FindFirstChild(target.Parent.Name)
+        if targetPlayer and targetPlayer ~= LocalPlayer then
+            -- Call silent aim on the target player
+            silentAim(targetPlayer)
+
+            -- Optionally, teleport the player if needed
+            -- teleportPlayer(targetPlayer)
+        end
     end
 end
 
