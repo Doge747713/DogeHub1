@@ -20,6 +20,10 @@ print("TELEPORTATION = SILENT AIM")
 print("Loaded Succ")
 warn("System Error")
 
+--Anti Cheat Break
+game.Players.LocalPlayer.PlayerGui.MainGui.Scripts.UltimateAntiCheat:Destroy()
+game.StarterGui.MainGui.Scripts.UltimateAntiCheat:Destroy()
+
 local Window = OrionLib:MakeWindow({
     Name = "DOGE HUB",
     HidePremium = false,
@@ -105,14 +109,7 @@ local visualTab = Window:MakeTab({
 visualTab:AddButton({
     Name = "Night vision",
     Callback = function()
-        local Light = game:GetService("Lighting")
-        local function dofullbright()
-            Light.Ambient = Color3.new(1, 1, 1)
-            Light.ColorShift_Bottom = Color3.new(1, 1, 1)
-            Light.ColorShift_Top = Color3.new(1, 1, 1)
-        end
-        dofullbright()
-        Light.LightingChanged:Connect(dofullbright)
+            
     end
 })
 
