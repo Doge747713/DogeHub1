@@ -130,12 +130,6 @@ local function MakeDraggable(DragPoint, Main)
 	end)
 end    
 
-OrionLib:MakeNotification({
-			Name = "Welcome To Doge Hub",
-			Content = "Welcome To Doge Hub! Made By: Doge",
-			Time = 5
-		})
-
 		
 local function Create(Name, Properties, Children)
 	local Object = Instance.new(Name)
