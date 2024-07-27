@@ -190,9 +190,9 @@ Premium:AddButton({
 })
 
 Credits:AddButton({
-    Name = "VERSION 0.4",
+    Name = "VERSION 0.7 BETA",
     Callback = function()
-
+print("VERSION 0.7 BETA LAST UPDATED 27.07.24 22.19")
     end
 })
 
