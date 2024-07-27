@@ -408,6 +408,12 @@ local function checkMouseTarget()
 end
 
 -- Handle input for toggling teleportation, vault visibility, and ESP
+-- Initialize variables
+local teleportEnabled = true  -- Teleportation is enabled by default
+local espEnabled = true  -- Toggle ESP feature
+local nightVisionEnabled = false -- Initialize night vision toggle
+
+-- Handle input for toggling teleportation, vault visibility, and ESP
 local function onInput(input)
     if input.KeyCode == Enum.KeyCode.P then
         teleportEnabled = not teleportEnabled
@@ -423,16 +429,16 @@ local function onInput(input)
                 createInventoryMenu(playerName, clothing, equipment, inventory, vault)
             end
         end
-                elseif input.KeyCode == Enum.KeyCode.U then
-            -- Toggle Night Vision
-            nightVisionEnabled = not nightVisionEnabled
-            if nightVisionEnabled then
-                game.Lighting.Ambient = Color3.fromRGB(255,255,255)  -- Example color for night vision
-                game.Lighting.Brightness = 7  -- Increase brightness for night vision
-            else
-                game.Lighting.Ambient = Color3.fromRGB(128, 128, 128)  -- Default ambient color
-                game.Lighting.Brightness = 3  -- Default brightness
-            end
+    elseif input.KeyCode == Enum.KeyCode.U then
+        -- Toggle Night Vision
+        nightVisionEnabled = not nightVisionEnabled
+        if nightVisionEnabled then
+            game.Lighting.Ambient = Color3.fromRGB(255, 255, 255)  -- Example color for night vision
+            game.Lighting.Brightness = 7  -- Increase brightness for night vision
+        else
+            game.Lighting.Ambient = Color3.fromRGB(128, 128, 128)  -- Default ambient color
+            game.Lighting.Brightness = 3  -- Default brightness
+        end
     elseif input.KeyCode == Enum.KeyCode.E then
         espEnabled = not espEnabled
         print("ESP " .. (espEnabled and "Enabled" or "Disabled"))
