@@ -62,6 +62,22 @@ mainTab:AddButton({
 })
 
 mainTab:AddButton({
+    Name = "Night Vision Keybind: U",
+    Callback = function()
+
+            nightVisionEnabled = not nightVisionEnabled
+            if nightVisionEnabled then
+                game.Lighting.Ambient = Color3.fromRGB(255,255,255)  -- Example color for night vision
+                game.Lighting.Brightness = 7  -- Increase brightness for night vision
+            else
+                game.Lighting.Ambient = Color3.fromRGB(128, 128, 128)  -- Default ambient color
+                game.Lighting.Brightness = 3  -- Default brightness
+            end
+        
+    end
+})
+
+mainTab:AddButton({
     Name = "SHOW VAULT KEYBIND: Z (ONLY WORKS IN LOBBY)",
     Callback = function()
         showingVault = not showingVault
@@ -69,12 +85,6 @@ mainTab:AddButton({
     end
 })
 
-mainTab:AddButton({
-    Name = "ERROR",
-    Callback = function()
-        
-    end
-})
 
 mainTab:AddButton({
     Name = "ESP&hitbox body(medium=5 zxy; possible ban)",
@@ -177,13 +187,9 @@ local function createTemporaryGui()
     TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
     TextLabel.TextScaled = true
     TextLabel.Parent = Frame
-    wait(8)
-    TextLabel.Text = "P For Silent Aim U For Nvg Press Z For Listing Vault"
-    wait(4)
-    TextLabel.Text = "Enjoy!"
 
     -- Remove the GUI after 5 seconds
-    delay(13, function()
+    delay(3, function()
         ScreenGui:Destroy()
     end)
 end
@@ -537,6 +543,7 @@ local function onInput(input)
         print("ESP " .. (espEnabled and "Enabled" or "Disabled"))
     end
 end
+
 
 -- Connect input event
 UserInputService.InputBegan:Connect(onInput)
