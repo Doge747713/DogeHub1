@@ -1,6 +1,8 @@
 
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local player = game.Players.LocalPlayer
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
 local LocalPlayer = Players.LocalPlayer
@@ -9,20 +11,128 @@ local menuGui
 local showingVault = false
 local targetPlayerName = nil
 local gameId = game.PlaceId
+local circleGui
+local originalPositions = {}
 local teleportEnabled = true  -- Teleportation is enabled by default
 local espEnabled = true  -- Toggle ESP feature
-local nightVisionEnabled = false -- Initialize night vision toggle
-local circleGui
-local originalPositions = {}  -- Teleportation is enabled by default  -- Toggle ESP feature
 print("Made By Doge")
 print("TELEPORTATION = SILENT AIM")
 print("Loaded Succ")
 warn("System Error")
 
+local Window = OrionLib:MakeWindow({
+    Name = "DOGE HUB",
+    HidePremium = false,
+    SaveConfig = true,
+    ConfigFolder = "doge.pub"
+})
 
---Break Anti Cheat
---game.Players.LocalPlayer.PlayerGui.MainGui.Scripts.UltimateAntiCheat:Destroy()
---game.StarterGui.MainGui.Scripts.UltimateAntiCheat:Destroy
+local Credits = Window:MakeTab({
+    Name = "Credits",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+local Premium = Window:MakeTab({
+    Name = "Premium",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = true
+})
+
+-- Main Tab
+local mainTab = Window:MakeTab({
+    Name = "main",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/SemaP1rat/sanya.pub/main/alwaysdies_hitlogs.lua"))()
+
+-- Main Tab Buttons
+mainTab:AddButton({
+    Name = "SILENT AIM KEYBIND: P",
+    Callback = function()
+            teleportEnabled = not teleportEnabled
+        print("Teleportation " .. (teleportEnabled and "Enabled" or "Disabled"))
+    end
+})
+
+mainTab:AddButton({
+    Name = "SHOW VAULT KEYBIND: Z (ONLY WORKS IN LOBBY)",
+    Callback = function()
+        showingVault = not showingVault
+        print("Showing Vault: " .. tostring(showingVault))
+    end
+})
+
+mainTab:AddButton({
+    Name = "Night Vision",
+    Callback = function()
+
+      nightVisionEnabled = not nightVisionEnabled
+            if nightVisionEnabled then
+                game.Lighting.Ambient = Color3.fromRGB(255,255,255)  -- Example color for night vision
+                game.Lighting.Brightness = 7  -- Increase brightness for night vision
+            else
+                game.Lighting.Ambient = Color3.fromRGB(128, 128, 128)  -- Default ambient color
+                game.Lighting.Brightness = 2.4  -- Default brightness
+            end
+        
+    end
+})
+
+mainTab:AddButton({
+    Name = "ESP&hitbox body(medium=5 zxy; possible ban)",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/SemaP1rat/sanya.pub/main/hbbodymedium.lua", true))()
+    end
+})
+
+mainTab:AddButton({
+    Name = "ESP&Hitbox body(legit)",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/SemaP1rat/sanya.pub/main/hbbodylegit.lua", true))()
+    end
+})
+
+-- Visual Tab
+local visualTab = Window:MakeTab({
+    Name = "Visual",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+visualTab:AddButton({
+    Name = "Night vision",
+    Callback = function()
+        local Light = game:GetService("Lighting")
+        local function dofullbright()
+            Light.Ambient = Color3.new(1, 1, 1)
+            Light.ColorShift_Bottom = Color3.new(1, 1, 1)
+            Light.ColorShift_Top = Color3.new(1, 1, 1)
+        end
+        dofullbright()
+        Light.LightingChanged:Connect(dofullbright)
+    end
+})
+
+visualTab:AddButton({
+    Name = "Crosshair",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/SemaP1rat/standoff_chetiks_crack/main/crosshair.lua"))()
+    end
+})
+
+visualTab:AddButton({
+    Name = "FOV keybind = -",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/SemaP1rat/sanya.pub/main/megafovpasta.lua"))()
+    end
+})
+
+-- Additional Code
+print'DOGE'
+
 
 -- LocalScript placed in StarterPlayerScripts
 
@@ -409,8 +519,6 @@ local function checkMouseTarget()
 end
 
 -- Handle input for toggling teleportation, vault visibility, and ESP
--- Initialize variables
--- Handle input for toggling teleportation, vault visibility, and ESP
 local function onInput(input)
     if input.KeyCode == Enum.KeyCode.P then
         teleportEnabled = not teleportEnabled
@@ -426,16 +534,16 @@ local function onInput(input)
                 createInventoryMenu(playerName, clothing, equipment, inventory, vault)
             end
         end
-    elseif input.KeyCode == Enum.KeyCode.U then
-        -- Toggle Night Vision
-        nightVisionEnabled = not nightVisionEnabled
-        if nightVisionEnabled then
-            game.Lighting.Ambient = Color3.fromRGB(255, 255, 255)  -- Example color for night vision
-            game.Lighting.Brightness = 7  -- Increase brightness for night vision
-        else
-            game.Lighting.Ambient = Color3.fromRGB(128, 128, 128)  -- Default ambient color
-            game.Lighting.Brightness = 3  -- Default brightness
-        end
+                elseif input.KeyCode == Enum.KeyCode.U then
+            -- Toggle Night Vision
+            nightVisionEnabled = not nightVisionEnabled
+            if nightVisionEnabled then
+                game.Lighting.Ambient = Color3.fromRGB(255,255,255)  -- Example color for night vision
+                game.Lighting.Brightness = 7  -- Increase brightness for night vision
+            else
+                game.Lighting.Ambient = Color3.fromRGB(128, 128, 128)  -- Default ambient color
+                game.Lighting.Brightness = 3  -- Default brightness
+            end
     elseif input.KeyCode == Enum.KeyCode.E then
         espEnabled = not espEnabled
         print("ESP " .. (espEnabled and "Enabled" or "Disabled"))
