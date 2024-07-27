@@ -1,4 +1,4 @@
-
+local badremote = game.ReplicatedStorage.Remotes:WaitForChild("\208\149rrrorLog")
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local player = game.Players.LocalPlayer
@@ -19,6 +19,8 @@ print("Made By Doge")
 print("TELEPORTATION = SILENT AIM")
 print("Loaded Succ")
 warn("System Error")
+
+badremote:Destroy()
 
 --Anti Cheat Break
 
