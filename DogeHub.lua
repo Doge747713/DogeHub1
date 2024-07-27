@@ -1,7 +1,6 @@
 local badremote = game.ReplicatedStorage.Remotes:WaitForChild("\208\149rrrorLog")
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local Containers = workspace:WaitForChild("Containers")
 local player = game.Players.LocalPlayer
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/Doge747713/DogeHub1/main/OrionLoader.lua')))()
 local RunService = game:GetService("RunService")
