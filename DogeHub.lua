@@ -24,6 +24,19 @@ badremote:Destroy()
 
 --Anti Cheat Break
 
+local function loopBreakAntiCheatTest()
+    while wait(0.5) do
+        if badremote and badremote:IsA("RemoteEvent") then -- Check if badremote exists and is a RemoteEvent
+            badremote:Destroy() -- Destroy the remote event
+            print("Bad remote destroyed.")
+            break -- Break the loop after destroying
+        end
+    end
+end
+
+loopBreakAntiCheatTest() 
+
+
 local function toggleAimbot()
     aimbotEnabled = not aimbotEnabled
     print("Aimbot " .. (aimbotEnabled and "Enabled" or "Disabled"))
