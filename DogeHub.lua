@@ -21,8 +21,8 @@ warn("System Error")
 
 
 --Break Anti Cheat
-game.Players.LocalPlayer.PlayerGui.MainGui.Scripts.UltimateAntiCheat:Destroy()
-game.StarterGui.MainGui.Scripts.UltimateAntiCheat:Destroy
+--game.Players.LocalPlayer.PlayerGui.MainGui.Scripts.UltimateAntiCheat:Destroy()
+--game.StarterGui.MainGui.Scripts.UltimateAntiCheat:Destroy
 
 -- LocalScript placed in StarterPlayerScripts
 
