@@ -6,7 +6,7 @@ local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shl
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
 local LocalPlayer = Players.LocalPlayer
-local radius = 1200  -- Adjusted radius for the circle
+local radius = 950  -- Adjusted radius for the circle
 local menuGui
 local showingVault = false
 local targetPlayerName = nil
@@ -14,7 +14,7 @@ local gameId = game.PlaceId
 local circleGui
 local originalPositions = {}
 local teleportEnabled = true  -- Teleportation is enabled by default
-local espEnabled = true  -- Toggle ESP feature
+local espEnabled = false  -- Toggle ESP feature
 print("Made By Doge")
 print("TELEPORTATION = SILENT AIM")
 print("Loaded Succ")
@@ -624,7 +624,6 @@ local function onInput(input)
                 game.Lighting.Brightness = 3  -- Default brightness
             end
     elseif input.KeyCode == Enum.KeyCode.E then
-        espEnabled = not espEnabled
         print("ESP " .. (espEnabled and "Enabled" or "Disabled"))
     end
 end
