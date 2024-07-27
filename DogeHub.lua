@@ -24,6 +24,25 @@ badremote:Destroy()
 
 --Anti Cheat Break
 
+local function toggleAimbot()
+    aimbotEnabled = not aimbotEnabled
+    print("Aimbot " .. (aimbotEnabled and "Enabled" or "Disabled"))
+
+    if aimbotEnabled then
+        -- Connect the aiming function to RenderStepped when enabled
+        RunService.RenderStepped:Connect(function()
+            local mouse = LocalPlayer:GetMouse()
+            local target = mouse.Target
+            if target and target.Parent and game.Players:FindFirstChild(target.Parent.Name) then
+                local targetPlayer = game.Players:FindFirstChild(target.Parent.Name)
+                if targetPlayer and targetPlayer ~= LocalPlayer then
+                    silentAim(targetPlayer)
+                end
+            end
+        end)
+    end
+end
+
 local Window = OrionLib:MakeWindow({
     Name = "DOGE HUB",
     HidePremium = false,
@@ -58,6 +77,15 @@ mainTab:AddButton({
     Callback = function()
             teleportEnabled = not teleportEnabled
         print("Teleportation " .. (teleportEnabled and "Enabled" or "Disabled"))
+    end
+})
+
+-- Function to toggle the aimbot
+
+mainTab:AddButton({
+    Name = "AIMBOT NOT WORKING",
+    Callback = function()
+        toggleAimbot()
     end
 })
 
@@ -587,6 +615,7 @@ local function onInput(input)
         print("ESP " .. (espEnabled and "Enabled" or "Disabled"))
     end
 end
+
 
 
 -- Connect input event
