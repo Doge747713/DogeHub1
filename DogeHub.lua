@@ -70,17 +70,8 @@ mainTab:AddButton({
 })
 
 mainTab:AddButton({
-    Name = "Night Vision",
+    Name = "ERROR",
     Callback = function()
-
-      nightVisionEnabled = not nightVisionEnabled
-            if nightVisionEnabled then
-                game.Lighting.Ambient = Color3.fromRGB(255,255,255)  -- Example color for night vision
-                game.Lighting.Brightness = 7  -- Increase brightness for night vision
-            else
-                game.Lighting.Ambient = Color3.fromRGB(128, 128, 128)  -- Default ambient color
-                game.Lighting.Brightness = 2.4  -- Default brightness
-            end
         
     end
 })
