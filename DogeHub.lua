@@ -93,6 +93,27 @@ mainTab:AddButton({
     end
 })
 
+Credits:AddButton({
+    Name = "CREATED BY DOGE",
+    Callback = function()
+
+    end
+})
+
+Premium:AddButton({
+    Name = "SOON!",
+    Callback = function()
+
+    end
+})
+
+Credits:AddButton({
+    Name = "VERSION 0.4",
+    Callback = function()
+
+    end
+})
+
 -- Function to toggle the aimbot
 
 mainTab:AddButton({
