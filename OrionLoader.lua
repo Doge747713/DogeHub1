@@ -7,6 +7,8 @@ local LocalPlayer = game:GetService("Players").LocalPlayer
 local Mouse = LocalPlayer:GetMouse()
 local HttpService = game:GetService("HttpService")
 
+
+
 local OrionLib = {
 	Elements = {},
 	ThemeObjects = {},
@@ -128,6 +130,13 @@ local function MakeDraggable(DragPoint, Main)
 	end)
 end    
 
+OrionLib:MakeNotification({
+			Name = "Welcome To Doge Hub",
+			Content = "Welcome To Doge Hub! Made By: Doge",
+			Time = 5
+		})
+
+		
 local function Create(Name, Properties, Children)
 	local Object = Instance.new(Name)
 	for i, v in next, Properties or {} do
@@ -652,8 +661,8 @@ function OrionLib:MakeWindow(WindowConfig)
 		UIHidden = true
 		OrionLib:MakeNotification({
 			Name = "Interface Hidden",
-			Content = "Tap RightShift to reopen the interface",
-			Time = 5
+			Content = "Tap RightShift to reopen the Doge Hub",
+			Time = 10
 		})
 		WindowConfig.CloseCallback()
 	end)
