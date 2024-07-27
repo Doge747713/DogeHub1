@@ -9,10 +9,11 @@ local menuGui
 local showingVault = false
 local targetPlayerName = nil
 local gameId = game.PlaceId
-local circleGui
-local originalPositions = {}
 local teleportEnabled = true  -- Teleportation is enabled by default
 local espEnabled = true  -- Toggle ESP feature
+local nightVisionEnabled = false -- Initialize night vision toggle
+local circleGui
+local originalPositions = {}  -- Teleportation is enabled by default  -- Toggle ESP feature
 print("Made By Doge")
 print("TELEPORTATION = SILENT AIM")
 print("Loaded Succ")
@@ -409,10 +410,6 @@ end
 
 -- Handle input for toggling teleportation, vault visibility, and ESP
 -- Initialize variables
-local teleportEnabled = true  -- Teleportation is enabled by default
-local espEnabled = true  -- Toggle ESP feature
-local nightVisionEnabled = false -- Initialize night vision toggle
-
 -- Handle input for toggling teleportation, vault visibility, and ESP
 local function onInput(input)
     if input.KeyCode == Enum.KeyCode.P then
