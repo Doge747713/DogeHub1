@@ -21,8 +21,6 @@ print("Loaded Succ")
 warn("System Error")
 
 --Anti Cheat Break
-game.Players.LocalPlayer.PlayerGui.MainGui.Scripts.UltimateAntiCheat:Destroy()
-game.StarterGui.MainGui.Scripts.UltimateAntiCheat:Destroy()
 
 local Window = OrionLib:MakeWindow({
     Name = "DOGE HUB",
