@@ -2,6 +2,8 @@ local badremote = game.ReplicatedStorage.Remotes:WaitForChild("\208\149rrrorLog"
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local player = game.Players.LocalPlayer
+local maxDistance = 500
+local billboardsShown = false
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/Doge747713/DogeHub1/main/OrionLoader.lua')))()
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
@@ -24,6 +26,95 @@ warn("System Error")
 
 badremote:Destroy()
 
+
+-- Function to create a billboard in each model in game.Workspace.DroppedItems
+
+function createOrUpdateBillboards()
+    local droppedItems = game.Workspace:FindFirstChild("DroppedItems")
+    local localPlayer = game.Players.LocalPlayer
+    local playerPosition = localPlayer.Character and localPlayer.Character:FindFirstChild("HumanoidRootPart") and localPlayer.Character.HumanoidRootPart.Position
+
+    if not droppedItems or not playerPosition then
+        warn("DroppedItems folder or LocalPlayer position not found in Workspace")
+        return
+    end
+
+    for _, model in pairs(droppedItems:GetChildren()) do
+        if model:IsA("Model") then
+            local modelPosition = model.PrimaryPart and model.PrimaryPart.Position or model:FindFirstChildWhichIsA("BasePart") and model:FindFirstChildWhichIsA("BasePart").Position
+            if modelPosition then
+                local distance = (modelPosition - playerPosition).Magnitude
+                local existingBillboard = model:FindFirstChildWhichIsA("BillboardGui")
+                if distance <= maxDistance then
+                    if not existingBillboard then
+                        local billboardGui = Instance.new("BillboardGui")
+                        billboardGui.Size = UDim2.new(0, 200, 0, 50)
+                        billboardGui.Adornee = model.PrimaryPart or model:FindFirstChildWhichIsA("BasePart")
+                        billboardGui.AlwaysOnTop = true
+                        billboardGui.Parent = model
+
+                        local textLabel = Instance.new("TextLabel")
+                        textLabel.Size = UDim2.new(1, 0, 1, 0)
+                        textLabel.BackgroundTransparency = 1
+                        textLabel.Text = model.Name .. ""
+                        textLabel.TextColor3 = Color3.new(1, 0, 0)
+                        textLabel.TextScaled = true
+                        textLabel.Font = Enum.Font.Roboto -- Set the font to Roboto or any other robotic style
+                        textLabel.Parent = billboardGui
+                    end
+                elseif existingBillboard then
+                    existingBillboard:Destroy()
+                end
+            end
+        end
+    end
+end
+
+-- Function to remove all billboards
+function removeBillboards()
+    local droppedItems = game.Workspace:FindFirstChild("DroppedItems")
+    
+    if not droppedItems then
+        warn("DroppedItems folder not found in Workspace")
+        return
+    end
+
+    for _, model in pairs(droppedItems:GetChildren()) do
+        if model:IsA("Model") then
+            for _, child in pairs(model:GetChildren()) do
+                if child:IsA("BillboardGui") then
+                    child:Destroy()
+                end
+            end
+        end
+    end
+end
+
+-- Function to start or stop the updating loop
+function toggleBillboards()
+    if billboardsShown then
+        -- Remove billboards and disconnect the update loop
+        removeBillboards()
+        if updateConnection then
+            updateConnection:Disconnect()
+            updateConnection = nil
+        end
+    else
+        -- Create and update billboards
+        createOrUpdateBillboards()
+        updateConnection = game:GetService("RunService").Stepped:Connect(function()
+            wait(7)
+            createOrUpdateBillboards()
+        end)
+    end
+    billboardsShown = not billboardsShown
+end
+
+-- Example usage
+--createBillboards()
+
+-- Call removeBillboards() to remove the billboards
+-- removeBillboards()
 
 -- Function to create a highlight for a player
 local function createHighlight(player)
@@ -278,6 +369,15 @@ visualTab:AddButton({
     Name = "Show Loot Containers",
     Callback = function()
        
+    end
+})
+
+visualTab:AddButton({
+    Name = "Show Dropped Items & Corpses",
+    Callback = function()
+
+toggleBillboards()
+
     end
 })
 
