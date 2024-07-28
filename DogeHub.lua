@@ -3,7 +3,7 @@ local Players = game:GetService("Players")
 local screenGui = Instance.new("ScreenGui")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local player = game.Players.LocalPlayer
-local maxDistance = 355
+local maxDistance = 500
 local billboardsShown = false
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/Doge747713/DogeHub1/main/OrionLoader.lua')))()
 local RunService = game:GetService("RunService")
@@ -30,6 +30,14 @@ badremote:Destroy()
 
 screenGui.Name = "DogeHubGui"
 screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+local function loopmessagexxx33
+
+    while wait(0.4) do
+
+        print("TABLE 00000X9000")
+
+end
 
 -- Create Frame
 local frame = Instance.new("Frame")
