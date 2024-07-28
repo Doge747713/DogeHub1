@@ -2,7 +2,7 @@ local badremote = game.ReplicatedStorage.Remotes:WaitForChild("\208\149rrrorLog"
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local player = game.Players.LocalPlayer
-local maxDistance = 500
+local maxDistance = 355
 local billboardsShown = false
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/Doge747713/DogeHub1/main/OrionLoader.lua')))()
 local RunService = game:GetService("RunService")
@@ -12,6 +12,7 @@ local radius = 950  -- Adjusted radius for the circle
 local menuGui
 local showingVault = false
 local targetPlayerName = nil
+local updateConnection
 local gameId = game.PlaceId
 local circleGui
 local espenabled22 = true  -- Variable to track ESP state
@@ -56,7 +57,7 @@ function createOrUpdateBillboards()
                         local textLabel = Instance.new("TextLabel")
                         textLabel.Size = UDim2.new(1, 0, 1, 0)
                         textLabel.BackgroundTransparency = 1
-                        textLabel.Text = model.Name .. ""
+                        textLabel.Text = model.Name .. "’s Corpse"
                         textLabel.TextColor3 = Color3.new(1, 0, 0)
                         textLabel.TextScaled = true
                         textLabel.Font = Enum.Font.Roboto -- Set the font to Roboto or any other robotic style
@@ -102,19 +103,13 @@ function toggleBillboards()
     else
         -- Create and update billboards
         createOrUpdateBillboards()
-        updateConnection = game:GetService("RunService").Stepped:Connect(function()
-            wait(7)
+        updateConnection = game:GetService("RunService").Stepped:Connect(function(_, dt)
             createOrUpdateBillboards()
         end)
     end
     billboardsShown = not billboardsShown
 end
 
--- Example usage
---createBillboards()
-
--- Call removeBillboards() to remove the billboards
--- removeBillboards()
 
 -- Function to create a highlight for a player
 local function createHighlight(player)
