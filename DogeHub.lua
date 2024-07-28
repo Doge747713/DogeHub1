@@ -57,7 +57,7 @@ function createOrUpdateBillboards()
                         local textLabel = Instance.new("TextLabel")
                         textLabel.Size = UDim2.new(1, 0, 1, 0)
                         textLabel.BackgroundTransparency = 1
-                        textLabel.Text = model.Name .. "’s Corpse"
+                        textLabel.Text = model.Name .. ""
                         textLabel.TextColor3 = Color3.new(1, 0, 0)
                         textLabel.TextScaled = true
                         textLabel.Font = Enum.Font.Roboto -- Set the font to Roboto or any other robotic style
