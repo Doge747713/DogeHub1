@@ -30,38 +30,6 @@ warn("System Error")
 badremote:Destroy()
 
 -- Function to check if a player is over water
-local function toggleWaterWalking()
-    local character = game.Players.LocalPlayer.Character
-    if not character then return end
-    local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
-    if not humanoidRootPart then return end
-
-    if waterWalkingEnabled then
-        -- Disable water walking
-        if humanoidRootPart:FindFirstChild("WaterWalkPart") then
-            humanoidRootPart.WaterWalkPart:Destroy()
-        end
-        waterWalkingEnabled = false
-        print("Water walking disabled")
-    else
-        -- Enable water walking
-        local waterWalkPart = Instance.new("Part")
-        waterWalkPart.Name = "WaterWalkPart"
-        waterWalkPart.Size = Vector3.new(6, 1, 6)
-        waterWalkPart.Anchored = true
-        waterWalkPart.Transparency = 1
-        waterWalkPart.CanCollide = true
-        waterWalkPart.Parent = humanoidRootPart
-
-        game:GetService("RunService").Stepped:Connect(function()
-            if waterWalkingEnabled then
-                waterWalkPart.Position = humanoidRootPart.Position - Vector3.new(0, humanoidRootPart.Size.Y / 2 + 0.5, 0)
-            end
-        end)
-        waterWalkingEnabled = true
-        print("Water walking enabled")
-    end
-end
 
 screenGui.Name = "DogeHubGui"
 screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
@@ -450,9 +418,9 @@ mainTab:AddButton({
 })
 
 mainTab:AddButton({
-    Name = "Walk On Water",
+    Name = "Walk On Water (Disabled Check Dev Log.)",
     Callback = function()
-        toggleWaterWalking()
+        print("DISABLED FOR SERVER DETECTED BAN")
     end
 })
 
