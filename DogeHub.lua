@@ -28,16 +28,51 @@ warn("System Error")
 
 badremote:Destroy()
 
+-- Function to check if a player is over water
+local function isOverWater(position)
+    local ray = Ray.new(position, Vector3.new(0, -50, 0))
+    local hitPart, hitPosition = game.Workspace:FindPartOnRay(ray)
+    if hitPart and hitPart.Material == Enum.Material.Water then
+        return true, hitPosition
+    end
+    return false, nil
+end
+
+-- Variable to store the event connection
+local waterWalkingConnection
+
+-- Function to enable water walking
+local function enableWaterWalking()
+    local player = game.Players.LocalPlayer
+    if not player or not player.Character then return end
+    
+    local humanoidRootPart = player.Character:FindFirstChild("HumanoidRootPart")
+    if not humanoidRootPart then return end
+    
+    waterWalkingConnection = game:GetService("RunService").Stepped:Connect(function()
+        local isWater, waterPosition = isOverWater(humanoidRootPart.Position)
+        if isWater then
+            local newYPosition = waterPosition.Y + 5 -- Adjust the Y position to stay above water
+            humanoidRootPart.CFrame = CFrame.new(humanoidRootPart.Position.X, newYPosition, humanoidRootPart.Position.Z)
+            humanoidRootPart.Velocity = Vector3.new(humanoidRootPart.Velocity.X, 0, humanoidRootPart.Velocity.Z)
+        end
+    end)
+end
+
+-- Function to disable water walking
+local function disableWaterWalking()
+    if waterWalkingConnection then
+        waterWalkingConnection:Disconnect()
+        waterWalkingConnection = nil
+    end
+end
+
+-- Call the function to enable water walking
+
+
 screenGui.Name = "DogeHubGui"
 screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 
-local function loopmessagexxx33
-
-    while wait(0.4) do
-
-        print("TABLE 00000X9000")
-
-end
 
 -- Create Frame
 local frame = Instance.new("Frame")
@@ -422,7 +457,7 @@ mainTab:AddButton({
 })
 
 mainTab:AddButton({
-    Name = "ESP&Hitbox body(legit)",
+    Name = "Walk On Water",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/SemaP1rat/sanya.pub/main/hbbodylegit.lua", true))()
     end
