@@ -1,5 +1,6 @@
 local badremote = game.ReplicatedStorage.Remotes:WaitForChild("\208\149rrrorLog")
 local Players = game:GetService("Players")
+local screenGui = Instance.new("ScreenGui")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local player = game.Players.LocalPlayer
 local maxDistance = 355
@@ -26,6 +27,86 @@ print("Loaded Succ")
 warn("System Error")
 
 badremote:Destroy()
+
+screenGui.Name = "DogeHubGui"
+screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+-- Create Frame
+local frame = Instance.new("Frame")
+frame.Name = "DogeHubFrame"
+frame.Size = UDim2.new(0, 250, 0, 50)  -- Adjust size for single line text
+frame.Position = UDim2.new(0, 10, 0, 10)
+frame.BackgroundTransparency = 0
+frame.BackgroundColor3 = Color3.new(0, 0, 0)
+frame.BorderSizePixel = 0
+frame.Parent = screenGui
+
+-- Create UICorner for smooth corners
+local uiCorner = Instance.new("UICorner")
+uiCorner.CornerRadius = UDim.new(0, 10)
+uiCorner.Parent = frame
+
+-- Create title TextLabel
+local titleLabel = Instance.new("TextLabel")
+titleLabel.Name = "TitleLabel"
+titleLabel.Size = UDim2.new(1, 0, 0.5, 0)
+titleLabel.Position = UDim2.new(0, 0, 0, 0)
+titleLabel.BackgroundTransparency = 1
+titleLabel.Text = "Doge Hub"
+titleLabel.TextColor3 = Color3.new(1, 1, 1)
+titleLabel.Font = Enum.Font.Roboto
+titleLabel.TextScaled = true
+titleLabel.Parent = frame
+
+-- Create FPS and Ping TextLabel
+local infoLabel = Instance.new("TextLabel")
+infoLabel.Name = "InfoLabel"
+infoLabel.Size = UDim2.new(1, 0, 0.5, 0)
+infoLabel.Position = UDim2.new(0, 15, -1, 0)
+infoLabel.BackgroundTransparency = 1
+infoLabel.Text = ""
+infoLabel.TextColor3 = Color3.new(1, 1, 1)
+infoLabel.Font = Enum.Font.Roboto
+infoLabel.TextScaled = true
+infoLabel.Parent = frame
+
+-- Function to get the ping
+local function getPing()
+    local stats = game:GetService("Stats")
+    local networkStats = stats.Network.ServerStatsItem["Data Ping"]
+    return math.floor(networkStats:GetValue())
+end
+
+-- Function to get the FPS
+local function getFPS()
+    local fps = workspace:GetRealPhysicsFPS()
+    return math.floor(fps)
+end
+
+-- Function to update the info text
+local function updateInfo()
+    while true do
+        infoLabel.Text = string.format("FPS: %d  Ping: %dms", getFPS(), getPing())
+        wait(1)
+    end
+end
+
+-- Function to smoothly change the RGB color of the title label's text
+local function animateTitleColor()
+    local h = 0
+    while true do
+        local color = Color3.fromHSV(h, 1, 1)
+        h = h + 0.01
+        if h >= 1 then h = 0 end
+        titleLabel.TextColor3 = color
+        wait(0.1)
+    end
+end
+
+-- Start the info update and RGB animation
+--spawn(updateInfo)
+spawn(animateTitleColor)
+
 
 
 -- Function to create a billboard in each model in game.Workspace.DroppedItems
