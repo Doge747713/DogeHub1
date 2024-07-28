@@ -304,7 +304,7 @@ local function toggleAimbot()
 end
 
 local Window = OrionLib:MakeWindow({
-    Name = "DOGE HUB                 V 0.9",
+    Name = "DOGE HUB                                             V 0.9",
     HidePremium = false,
     SaveConfig = true,
     ConfigFolder = "doge.pub"
