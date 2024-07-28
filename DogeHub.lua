@@ -304,7 +304,7 @@ local function toggleAimbot()
 end
 
 local Window = OrionLib:MakeWindow({
-    Name = "DOGE HUB",
+    Name = "DOGE HUB                 V 0.9",
     HidePremium = false,
     SaveConfig = true,
     ConfigFolder = "doge.pub"
@@ -357,9 +357,9 @@ Premium:AddButton({
 })
 
 Credits:AddButton({
-    Name = "VERSION 0.7 BETA",
+    Name = "VERSION 0.9 BETA",
     Callback = function()
-print("VERSION 0.7 BETA LAST UPDATED 27.07.24 22.19")
+print("VERSION 0.9 BETA LAST UPDATED 28.07.24 11.19")
     end
 })
 
