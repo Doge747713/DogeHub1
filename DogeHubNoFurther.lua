@@ -30,7 +30,7 @@ end
 local ScreenGui = Instance.new("ScreenGui")
 ScreenGui.Name = "KeyGui"
 ScreenGui.Parent = game.CoreGui
-wait(1)
+wait(1) -- Give some time for the GUI to be fully initialized
 
 -- Create a background frame for better aesthetics
 local BackgroundFrame = Instance.new("Frame")
@@ -39,7 +39,6 @@ BackgroundFrame.Position = UDim2.new(0.5, -150, 0.5, -100)
 BackgroundFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 BackgroundFrame.BorderSizePixel = 0
 BackgroundFrame.Parent = ScreenGui
-
 
 -- Create the TextBox for key input
 local TextBox = Instance.new("TextBox")
@@ -71,6 +70,11 @@ TextButton.BorderSizePixel = 0
 TextButton.Font = Enum.Font.SourceSans
 TextButton.TextSize = 18
 TextButton.Parent = BackgroundFrame
+
+-- Create a UI corner for the TextButton
+local ButtonCorner = Instance.new("UICorner")
+ButtonCorner.CornerRadius = UDim.new(0.1, 0)
+ButtonCorner.Parent = TextButton
 
 -- Create a UI corner for the TextButton
 local ButtonCorner = Instance.new("UICorner")
