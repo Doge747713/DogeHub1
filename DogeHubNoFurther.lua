@@ -39,7 +39,6 @@ BackgroundFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 BackgroundFrame.BorderSizePixel = 0
 BackgroundFrame.Parent = ScreenGui
 
--- Create a UI corner for rounded edges
 local UICorner = Instance.new("UICorner")
 UICorner.CornerRadius = UDim.new(0.1, 0) -- Rounded corners
 UICorner.Parent = BackgroundFrame
