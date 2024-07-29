@@ -17,6 +17,7 @@ local keys = {
 }
 
 -- Function to check if the provided key is valid
+-- Function to check if the provided key is valid
 local function isValidKey(inputKey)
     for _, key in ipairs(keys) do
         if key == inputKey then
@@ -26,13 +27,12 @@ local function isValidKey(inputKey)
     return false
 end
 
--- Create the GUI elements
+-- Create the GUI
 local ScreenGui = Instance.new("ScreenGui")
 ScreenGui.Name = "KeyGui"
 ScreenGui.Parent = game.CoreGui
-wait(1) -- Give some time for the GUI to be fully initialized
 
--- Create a background frame for better aesthetics
+-- Create a frame for better aesthetics
 local BackgroundFrame = Instance.new("Frame")
 BackgroundFrame.Size = UDim2.new(0, 300, 0, 200)
 BackgroundFrame.Position = UDim2.new(0.5, -150, 0.5, -100)
@@ -40,7 +40,12 @@ BackgroundFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 BackgroundFrame.BorderSizePixel = 0
 BackgroundFrame.Parent = ScreenGui
 
--- Create the TextBox for key input
+-- Rounded corners for the frame
+local UICorner = Instance.new("UICorner")
+UICorner.CornerRadius = UDim.new(0.1, 0)
+UICorner.Parent = BackgroundFrame
+
+-- TextBox for key input
 local TextBox = Instance.new("TextBox")
 TextBox.Name = "KeyTextBox"
 TextBox.Size = UDim2.new(0, 250, 0, 50)
@@ -53,33 +58,18 @@ TextBox.Font = Enum.Font.SourceSans
 TextBox.TextSize = 18
 TextBox.Parent = BackgroundFrame
 
--- Create a UI corner for the TextBox
-local TextBoxCorner = Instance.new("UICorner")
-TextBoxCorner.CornerRadius = UDim.new(0.1, 0)
-TextBoxCorner.Parent = TextBox
-
--- Create the TextButton for submission
+-- TextButton for submission
 local TextButton = Instance.new("TextButton")
 TextButton.Name = "SubmitButton"
 TextButton.Size = UDim2.new(0, 100, 0, 50)
 TextButton.Position = UDim2.new(0.5, -50, 0.5, 40)
 TextButton.Text = "Submit"
 TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextButton.BackgroundColor3 = Color3.fromRGB(0, 170, 0) -- Green background
+TextButton.BackgroundColor3 = Color3.fromRGB(0, 170, 0)
 TextButton.BorderSizePixel = 0
 TextButton.Font = Enum.Font.SourceSans
 TextButton.TextSize = 18
 TextButton.Parent = BackgroundFrame
-
--- Create a UI corner for the TextButton
-local ButtonCorner = Instance.new("UICorner")
-ButtonCorner.CornerRadius = UDim.new(0.1, 0)
-ButtonCorner.Parent = TextButton
-
--- Create a UI corner for the TextButton
-local ButtonCorner = Instance.new("UICorner")
-ButtonCorner.CornerRadius = UDim.new(0.1, 0)
-ButtonCorner.Parent = TextButton
 
 -- Variable to track if the script should execute
 local shouldExecute = false
@@ -93,24 +83,21 @@ TextButton.MouseButton1Click:Connect(function()
         shouldExecute = true
         ScreenGui:Destroy() -- Hide and remove the GUI
 
-        -- Place your script's main code here
+        -- Place your main script code here
         if shouldExecute then
-            -- Example main script code
             print("Main script is now running...")
-            -- You can replace the print statement with your main script code
+            -- Your main script logic goes here
         end
     else
         print("Invalid key. The script will not execute.")
-        -- Optionally, you could add feedback for the user, like changing the text color of the TextBox or showing an error message.
         TextBox.Text = "" -- Clear the TextBox for new input
     end
 end)
 
--- Main script code that should not run until the key is validated
+-- Main script execution control
 while not shouldExecute do
-    wait(1) -- Wait until the key is validated and shouldExecute is true
+    wait(1)
 end
-
 
 local frame = Instance.new("Frame")
 frame.Name = "DogeHubFrame"
