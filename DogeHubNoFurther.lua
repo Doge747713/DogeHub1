@@ -1,3 +1,116 @@
+local player = game.Players.LocalPlayer
+local mouse = player:GetMouse()
+local aimbotEnabled = false
+local isAiming = false
+local keyGui = script.Parent
+local keyTextBox = keyGui:WaitForChild("KeyTextBox", 10) -- Wait for a maximum of 10 seconds
+local submitButton = keyGui:WaitForChild("SubmitButton", 10) -- Wait for a maximum of 10 seconds
+local targetHead = nil
+local aimingTarget = nil
+local keys = {
+    "000377X99100E887e99F938Nf",
+    "e7gv9GTN5RJ8cAKjfwW4ayHb3dBkZqYDQmXsnMzLFVUxPu2thC",
+    "KvHAkcZLJfG5BWbPRgnymwQzqXCrpuYs47FUxjSh8TVD6d9ea2",
+    "ZszayMDBgn7verQSNW5VGtRUqJfPjxuAw3kHKcC9mh6XTF4E2p", --ömer
+    "jDP2aNqVKJfQ6RHyGTMew7hA9ZvcLd5WgSzkxtFC8X3ubYmUnE",
+    -- Add more keys here if needed
+}
+
+-- Function to check if the provided key is valid
+local function isValidKey(inputKey)
+    for _, key in ipairs(keys) do
+        if key == inputKey then
+            return true
+        end
+    end
+    return false
+end
+
+-- Create the GUI elements
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "KeyGui"
+ScreenGui.Parent = game.CoreGui
+
+-- Create a background frame for better aesthetics
+local BackgroundFrame = Instance.new("Frame")
+BackgroundFrame.Size = UDim2.new(0, 300, 0, 200)
+BackgroundFrame.Position = UDim2.new(0.5, -150, 0.5, -100)
+BackgroundFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+BackgroundFrame.BorderSizePixel = 0
+BackgroundFrame.Parent = ScreenGui
+
+-- Create a UI corner for rounded edges
+local UICorner = Instance.new("UICorner")
+UICorner.CornerRadius = UDim.new(0.1, 0) -- Rounded corners
+UICorner.Parent = BackgroundFrame
+
+-- Create the TextBox for key input
+local TextBox = Instance.new("TextBox")
+TextBox.Name = "KeyTextBox"
+TextBox.Size = UDim2.new(0, 250, 0, 50)
+TextBox.Position = UDim2.new(0.5, -125, 0.5, -30)
+TextBox.PlaceholderText = "Enter your key"
+TextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextBox.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+TextBox.BorderSizePixel = 0
+TextBox.Font = Enum.Font.SourceSans
+TextBox.TextSize = 18
+TextBox.Parent = BackgroundFrame
+
+-- Create a UI corner for the TextBox
+local TextBoxCorner = Instance.new("UICorner")
+TextBoxCorner.CornerRadius = UDim.new(0.1, 0)
+TextBoxCorner.Parent = TextBox
+
+-- Create the TextButton for submission
+local TextButton = Instance.new("TextButton")
+TextButton.Name = "SubmitButton"
+TextButton.Size = UDim2.new(0, 100, 0, 50)
+TextButton.Position = UDim2.new(0.5, -50, 0.5, 40)
+TextButton.Text = "Submit"
+TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextButton.BackgroundColor3 = Color3.fromRGB(0, 170, 0) -- Green background
+TextButton.BorderSizePixel = 0
+TextButton.Font = Enum.Font.SourceSans
+TextButton.TextSize = 18
+TextButton.Parent = BackgroundFrame
+
+-- Create a UI corner for the TextButton
+local ButtonCorner = Instance.new("UICorner")
+ButtonCorner.CornerRadius = UDim.new(0.1, 0)
+ButtonCorner.Parent = TextButton
+
+-- Variable to track if the script should execute
+local shouldExecute = false
+
+-- Handle key submission
+TextButton.MouseButton1Click:Connect(function()
+    local userKey = TextBox.Text
+
+    if isValidKey(userKey) then
+        print("Valid key. The script will execute.")
+        shouldExecute = true
+        ScreenGui:Destroy() -- Hide and remove the GUI
+
+        -- Place your script's main code here
+        if shouldExecute then
+            -- Example main script code
+            print("Main script is now running...")
+            -- You can replace the print statement with your main script code
+        end
+    else
+        print("Invalid key. The script will not execute.")
+        -- Optionally, you could add feedback for the user, like changing the text color of the TextBox or showing an error message.
+        TextBox.Text = "" -- Clear the TextBox for new input
+    end
+end)
+
+-- Main script code that should not run until the key is validated
+while not shouldExecute do
+    wait(1) -- Wait until the key is validated and shouldExecute is true
+end
+
+
 local frame = Instance.new("Frame")
 frame.Name = "DogeHubFrame"
 frame.Size = UDim2.new(0, 250, 0, 50)  -- Adjust size for single line text
@@ -35,6 +148,85 @@ infoLabel.TextColor3 = Color3.new(1, 1, 1)
 infoLabel.Font = Enum.Font.Roboto
 infoLabel.TextScaled = true
 infoLabel.Parent = frame
+
+-- Function to aim at the nearest target
+-- Function to aim at the nearest target
+
+
+-- Function to enable or disable the aimbot
+-- Function to enable or disable the aimbot
+-- Function to enable or disable the aimbot
+-- Function to enable or disable the aimbot
+-- Function to enable or disable the aimbot
+-- Function to enable or disable the aimbot
+-- Function to enable or disable the aimbot
+-- Function to enable or disable the aimbot
+function toggleAimbot()
+    aimbotEnabled = not aimbotEnabled -- Toggle the state
+
+    if not aimbotEnabled then
+        isAiming = false -- Reset aiming when disabling
+        targetHead = nil -- Clear target head
+    end
+end
+
+-- Function to lock the aim on the NPC's head and print body part
+function updateAimbot()
+    if aimbotEnabled then
+        if isAiming and not targetHead then
+            local target = mouse.Target -- Get the object the mouse is currently over
+
+            -- Check if the target is an NPC character
+            if target and target.Parent then
+                -- Check if the target is part of an NPC character model
+                local npcModel = target.Parent
+                if npcModel:FindFirstChild("Humanoid") and npcModel:FindFirstChild("Head") then
+                    targetHead = npcModel.Head -- Set target head to the NPC's head
+
+                    -- Determine which part we are aiming at
+                    local targetPosition = targetHead.Position
+                    local characterPosition = npcModel.PrimaryPart.Position -- Assuming PrimaryPart is set correctly
+
+                    -- Calculate the offset position of the target
+                    local offset = (targetPosition - characterPosition).unit
+
+                    -- Print which body part we are aiming at
+                    if (targetPosition - characterPosition).magnitude < 2 then
+                        print("Aiming at: Head")
+                    elseif offset.Y > 0.5 then
+                        print("Aiming at: Head")
+                    elseif offset.Y < -0.5 then
+                        print("Aiming at: Feet")
+                    else
+                        print("Aiming at: Torso")
+                    end
+                end
+            end
+        end
+
+        -- Aim at the target's head if aiming
+        if isAiming and targetHead then
+            -- Smoothly aim at the target's head
+            local direction = (targetHead.Position - workspace.CurrentCamera.CFrame.Position).unit
+            workspace.CurrentCamera.CFrame = CFrame.new(workspace.CurrentCamera.CFrame.Position, targetHead.Position)
+        end
+    end
+end
+
+-- Input handling for right mouse button
+mouse.Button2Down:Connect(function()
+    if aimbotEnabled then
+        isAiming = true -- Start aiming when right mouse button is held down
+    end
+end)
+
+mouse.Button2Up:Connect(function()
+    isAiming = false -- Stop aiming when right mouse button is released
+    targetHead = nil -- Unlock the target when the right mouse button is released
+end)
+
+-- Heartbeat connection to update aimbot
+game:GetService("RunService").Heartbeat:Connect(updateAimbot)
 
 -- Function to get the ping
 local function getPing()
@@ -170,14 +362,14 @@ local othergames = {
         AIesp = false,
         AIcolor = Color3.new(1, 1, 1),
         npcsilentaim = false,
-        hitlogs = false,
-        hitsound = false,
-        hittracers = false,
+        hitlogs = true,
+        hitsound = true,
+        hittracers = true,
         hittracerscolor = Color3.new(1, 1, 1),
         hittracerslife = 5,
         hittracersdecal = "",
         novisor = false,
-        nobobrecoil = false
+        nobobrecoil = true
     }
 }
 local varsglobal = {
@@ -2042,6 +2234,30 @@ wrap(function()
         wait(Options["FUCKPDD!!!!!!!!"].Value)
     end
 end)]]
+aimtab:AddToggle('Aimbot', {
+    Text = 'Aim Bot',
+    Default = false,
+
+    Callback = function(first)
+        toggleAimbot()
+    end
+
+    }):AddKeyPicker('aimbotkeybind', {
+    Default = 'None',
+    SyncToggleState = true,
+
+    Mode = 'Toggle',
+
+    Text = 'Aimbot Key Bind',
+    NoUI = false,
+
+    Callback = function(Value)
+    end,
+})
+
+
+
+
 aimtab:AddToggle('gnomefrLMAO', {
     Text = 'gnome mode',
     Default = false,
