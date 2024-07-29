@@ -643,7 +643,7 @@ end
     local color = Color3.fromRGB(139, 68, 235)
     Misc:AddToggle('showwatermark', {
         Text = 'watermark',
-        Default = false,
+        Default = true,
         Callback = function(v)
             draw:changevis(v)
         end
