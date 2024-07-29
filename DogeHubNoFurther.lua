@@ -20,6 +20,7 @@ local keys = {
 -- Function to check if the provided key is valid
 -- Function to check if the provided key is valid
 -- Function to check if the provided key is valid
+-- Function to check if the provided key is valid
 local function isValidKey(inputKey)
     for _, key in ipairs(keys) do
         if key == inputKey then
@@ -32,9 +33,9 @@ end
 -- Create the GUI elements
 local ScreenGui = Instance.new("ScreenGui")
 ScreenGui.Name = "KeyGui"
-ScreenGui.Parent = game.CoreGui -- Parent to CoreGui to make it visible
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui") -- Parent to PlayerGui
 
--- Create a background frame for better aesthetics
+-- Create a background frame for aesthetics
 local BackgroundFrame = Instance.new("Frame")
 BackgroundFrame.Size = UDim2.new(0, 300, 0, 200)
 BackgroundFrame.Position = UDim2.new(0.5, -150, 0.5, -100)
@@ -72,7 +73,7 @@ TextButton.Size = UDim2.new(0, 100, 0, 50)
 TextButton.Position = UDim2.new(0.5, -50, 0.5, 40)
 TextButton.Text = "Submit"
 TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextButton.BackgroundColor3 = Color3.fromRGB(0, 170, 0)
+TextButton.BackgroundColor3 = Color3.fromRGB(0, 170, 0) -- Green background
 TextButton.BorderSizePixel = 0
 TextButton.Font = Enum.Font.SourceSans
 TextButton.TextSize = 18
@@ -83,33 +84,20 @@ local ButtonCorner = Instance.new("UICorner")
 ButtonCorner.CornerRadius = UDim.new(0.1, 0)
 ButtonCorner.Parent = TextButton
 
--- Variable to track if the script should execute
-local shouldExecute = false
-
 -- Handle key submission
 TextButton.MouseButton1Click:Connect(function()
     local userKey = TextBox.Text
 
     if isValidKey(userKey) then
         print("Valid key. The script will execute.")
-        shouldExecute = true
-        ScreenGui:Destroy() -- Hide and remove the GUI
-
         -- Place your main script code here
-        if shouldExecute then
-            print("Main script is now running...")
-            -- Your main script logic goes here
-        end
+        ScreenGui:Destroy() -- Hide and remove the GUI
+        -- Your main script logic goes here
     else
         print("Invalid key. The script will not execute.")
         TextBox.Text = "" -- Clear the TextBox for new input
     end
 end)
-
--- Main script execution control
-while not shouldExecute do
-    wait(1)
-end
 
 local frame = Instance.new("Frame")
 frame.Name = "DogeHubFrame"
