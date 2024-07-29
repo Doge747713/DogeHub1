@@ -43,7 +43,7 @@ local loadprivate = swimguardvars.isprivate or swimguardvars.isdeveloper
 
 local function wrap(f) coroutine.resume(coroutine.create(f)) end
 local Library, Toggles, Options, ThemeManager, SaveManager, _esplib = nil, nil, nil, nil, nil, nil
-print("loading swimhub... please stand by...")
+print("loading Doge Hub... please stand by...")
 print('load_' .. tostring(counter))
 counter = counter + 1
 do
