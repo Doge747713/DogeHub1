@@ -22,63 +22,61 @@ local keys = {
 -- Function to check if the provided key is valid
 -- Function to check if the provided key is valid
 -- Function to create the key GUI
-local function createKeyGui()
-    -- Create GUI
-    local ScreenGui = Instance.new("ScreenGui")
-    ScreenGui.Parent = game.CoreGui -- Use CoreGui for executors
+-- Function to check if the provided key is valid
+local function isValidKey(inputKey)
+    for _, key in ipairs(validKeys) do
+        if inputKey == key then
+            return true
+        end
+    end
+    return false
+end
 
-    local BackgroundFrame = Instance.new("Frame")
-    BackgroundFrame.Size = UDim2.new(0, 300, 0, 200)
-    BackgroundFrame.Position = UDim2.new(0.5, -150, 0.5, -100)
-    BackgroundFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-    BackgroundFrame.BorderSizePixel = 0
-    BackgroundFrame.Parent = ScreenGui
+-- Create the GUI
+local function createKeyGui()
+    local ScreenGui = Instance.new("ScreenGui")
+    ScreenGui.Parent = game.CoreGui -- Use CoreGui to ensure it's visible
+
+    local Frame = Instance.new("Frame")
+    Frame.Size = UDim2.new(0, 400, 0, 200)
+    Frame.Position = UDim2.new(0.5, -200, 0.5, -100)
+    Frame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+    Frame.Parent = ScreenGui
 
     local TextBox = Instance.new("TextBox")
-    TextBox.Size = UDim2.new(0, 250, 0, 50)
-    TextBox.Position = UDim2.new(0.5, -125, 0.5, -30)
+    TextBox.Size = UDim2.new(0, 350, 0, 50)
+    TextBox.Position = UDim2.new(0, 25, 0, 20)
     TextBox.PlaceholderText = "Enter your key"
     TextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
-    TextBox.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-    TextBox.BorderSizePixel = 0
+    TextBox.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
     TextBox.Font = Enum.Font.SourceSans
     TextBox.TextSize = 18
-    TextBox.Parent = BackgroundFrame
+    TextBox.Parent = Frame
 
-    local TextButton = Instance.new("TextButton")
-    TextButton.Size = UDim2.new(0, 100, 0, 50)
-    TextButton.Position = UDim2.new(0.5, -50, 0.5, 40)
-    TextButton.Text = "Submit"
-    TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-    TextButton.BackgroundColor3 = Color3.fromRGB(0, 170, 0)
-    TextButton.BorderSizePixel = 0
-    TextButton.Font = Enum.Font.SourceSans
-    TextButton.TextSize = 18
-    TextButton.Parent = BackgroundFrame
+    local SubmitButton = Instance.new("TextButton")
+    SubmitButton.Size = UDim2.new(0, 150, 0, 50)
+    SubmitButton.Position = UDim2.new(0.5, -75, 0, 100)
+    SubmitButton.Text = "Submit"
+    SubmitButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    SubmitButton.BackgroundColor3 = Color3.fromRGB(0, 170, 0)
+    SubmitButton.Font = Enum.Font.SourceSans
+    SubmitButton.TextSize = 18
+    SubmitButton.Parent = Frame
 
-    -- Validate key on button click
-    TextButton.MouseButton1Click:Connect(function()
+    -- Handle key submission
+    SubmitButton.MouseButton1Click:Connect(function()
         local userKey = TextBox.Text
-        local keyValid = false
-        
-        for _, key in ipairs(validKeys) do
-            if userKey == key then
-                keyValid = true
-                break
-            end
-        end
-
-        if keyValid then
-            print("Valid key. The script will execute.")
-            -- Place your main script code here
-            ScreenGui:Destroy() -- Remove GUI after successful key entry
+        if isValidKey(userKey) then
+            print("Valid key! Executing the main script...")
+            ScreenGui:Destroy() -- Close the GUI
 
             -- Your main script logic goes here
-            -- Example: loadstring(game:HttpGet("https://your-script-url-here"))()
+            -- For example:
+            -- loadstring(game:HttpGet("https://your-script-url-here"))()
 
         else
-            print("Invalid key. The script will not execute.")
-            TextBox.Text = "" -- Clear input for new key
+            print("Invalid key. Please try again.")
+            TextBox.Text = "" -- Clear the input
         end
     end)
 end
