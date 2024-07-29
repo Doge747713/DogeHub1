@@ -9,10 +9,10 @@ local targetHead = nil
 local aimingTarget = nil
 local keys = {
     "000377X99100E887e99F938Nf",
-    "e7gv9GTN5RJ8cAKjfwW4ayHb3dBkZqYDQmXsnMzLFVUxPu2thC",
-    "KvHAkcZLJfG5BWbPRgnymwQzqXCrpuYs47FUxjSh8TVD6d9ea2",
-    "ZszayMDBgn7verQSNW5VGtRUqJfPjxuAw3kHKcC9mh6XTF4E2p", --ömer
-    "jDP2aNqVKJfQ6RHyGTMew7hA9ZvcLd5WgSzkxtFC8X3ubYmUnE",
+    "DW4aKR9YfbBSNPEvpkZ7zn",
+    "yFBjuRtNk6LC2qnbWZQPgH",
+    "ThCBRwmd5jz6tMkJbAYF2u", --ömer
+    "yFBjuRtNk6LC2qnbWZQPgH",
     -- Add more keys here if needed
 }
 
