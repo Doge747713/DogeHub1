@@ -8,11 +8,11 @@ local submitButton = keyGui:WaitForChild("SubmitButton", 10) -- Wait for a maxim
 local targetHead = nil
 local aimingTarget = nil
 local keys = {
-    "000377X99100E887e99F938Nf",
-    "DW4aKR9YfbBSNPEvpkZ7zn",
-    "yFBjuRtNk6LC2qnbWZQPgH",
+    "000377X99100E887e99F938Nf", --yedek
+    "DW4aKR9YfbBSNPEvpkZ7zn", --garland
+    "yFBjuRtNk6LC2qnbWZQPgH", --özer
     "ThCBRwmd5jz6tMkJbAYF2u", --ömer
-    "yFBjuRtNk6LC2qnbWZQPgH",
+    "yFBjuRtNk6LC2qnbWZQPgH", --ben
     -- Add more keys here if needed
 }
 
