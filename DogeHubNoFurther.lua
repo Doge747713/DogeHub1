@@ -18,6 +18,7 @@ local keys = {
 
 -- Function to check if the provided key is valid
 -- Function to check if the provided key is valid
+-- Function to check if the provided key is valid
 local function isValidKey(inputKey)
     for _, key in ipairs(keys) do
         if key == inputKey then
@@ -27,12 +28,12 @@ local function isValidKey(inputKey)
     return false
 end
 
--- Create the GUI
+-- Create the GUI elements
 local ScreenGui = Instance.new("ScreenGui")
 ScreenGui.Name = "KeyGui"
-ScreenGui.Parent = game.CoreGui
+ScreenGui.Parent = game.CoreGui -- Parent to CoreGui to make it visible
 
--- Create a frame for better aesthetics
+-- Create a background frame for better aesthetics
 local BackgroundFrame = Instance.new("Frame")
 BackgroundFrame.Size = UDim2.new(0, 300, 0, 200)
 BackgroundFrame.Position = UDim2.new(0.5, -150, 0.5, -100)
@@ -42,7 +43,7 @@ BackgroundFrame.Parent = ScreenGui
 
 -- Rounded corners for the frame
 local UICorner = Instance.new("UICorner")
-UICorner.CornerRadius = UDim.new(0.1, 0)
+UICorner.CornerRadius = UDim.new(0.1, 0) -- Rounded corners
 UICorner.Parent = BackgroundFrame
 
 -- TextBox for key input
@@ -58,18 +59,28 @@ TextBox.Font = Enum.Font.SourceSans
 TextBox.TextSize = 18
 TextBox.Parent = BackgroundFrame
 
--- TextButton for submission
+-- Create a UI corner for the TextBox
+local TextBoxCorner = Instance.new("UICorner")
+TextBoxCorner.CornerRadius = UDim.new(0.1, 0)
+TextBoxCorner.Parent = TextBox
+
+-- Create the TextButton for submission
 local TextButton = Instance.new("TextButton")
 TextButton.Name = "SubmitButton"
 TextButton.Size = UDim2.new(0, 100, 0, 50)
 TextButton.Position = UDim2.new(0.5, -50, 0.5, 40)
 TextButton.Text = "Submit"
 TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextButton.BackgroundColor3 = Color3.fromRGB(0, 170, 0)
+TextButton.BackgroundColor3 = Color3.fromRGB(0, 170, 0) -- Green background
 TextButton.BorderSizePixel = 0
 TextButton.Font = Enum.Font.SourceSans
 TextButton.TextSize = 18
 TextButton.Parent = BackgroundFrame
+
+-- Create a UI corner for the TextButton
+local ButtonCorner = Instance.new("UICorner")
+ButtonCorner.CornerRadius = UDim.new(0.1, 0)
+ButtonCorner.Parent = TextButton
 
 -- Variable to track if the script should execute
 local shouldExecute = false
