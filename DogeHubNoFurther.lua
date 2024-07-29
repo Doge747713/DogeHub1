@@ -29,13 +29,13 @@ local devbuild228 = not swimguardvars
 if devbuild228 then
     swimguardvars = {
         user = "developer",
-        discordid = 1113816617437106316,
+        discordid = 716514203137081376,
         isprivate = true,
         isdeveloper = true,
         version = "dev build"
     }
 end
-local title, title2 = '.Doge pd | %s | %s | fps %s',
+local title, title2 = '.gay pd | %s | %s | fps %s',
     '<font color="rgb(0, 255, 0)">$</font> Doge<font color="rgb(166, 0, 255)">.sigma</font> ' ..
     (swimguardvars.isprivate and not swimguardvars.isdeveloper and 'private ' or swimguardvars.isdeveloper and 'developer ' or '') ..
     '<font color="rgb(0, 255, 0)">$</font>'
@@ -623,7 +623,7 @@ end
         ZIndex = 2,
     })
     local text = draw:new("Text", {
-        Text = ".doge | fps | ping",
+        Text = ".gay | fps | ping",
         Size = 13,
         Font = varsglobal.visuals.font,
         Outline = true,
@@ -1280,7 +1280,7 @@ Misc:AddToggle('chatpsa1mcdstlbols', {
     end
 })
 Misc:AddInput('customwordtextbox', {
-    Default = 'doge.sigma on top',
+    Default = 'Doge.sigma on top!',
     Numeric = false,
     Finished = false,
 
