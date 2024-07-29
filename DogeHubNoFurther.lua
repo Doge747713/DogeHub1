@@ -19,6 +19,7 @@ local keys = {
 -- Function to check if the provided key is valid
 -- Function to check if the provided key is valid
 -- Function to check if the provided key is valid
+-- Function to check if the provided key is valid
 local function isValidKey(inputKey)
     for _, key in ipairs(keys) do
         if key == inputKey then
@@ -43,7 +44,7 @@ BackgroundFrame.Parent = ScreenGui
 
 -- Rounded corners for the frame
 local UICorner = Instance.new("UICorner")
-UICorner.CornerRadius = UDim.new(0.1, 0) -- Rounded corners
+UICorner.CornerRadius = UDim.new(0.1, 0)
 UICorner.Parent = BackgroundFrame
 
 -- TextBox for key input
@@ -71,7 +72,7 @@ TextButton.Size = UDim2.new(0, 100, 0, 50)
 TextButton.Position = UDim2.new(0.5, -50, 0.5, 40)
 TextButton.Text = "Submit"
 TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextButton.BackgroundColor3 = Color3.fromRGB(0, 170, 0) -- Green background
+TextButton.BackgroundColor3 = Color3.fromRGB(0, 170, 0)
 TextButton.BorderSizePixel = 0
 TextButton.Font = Enum.Font.SourceSans
 TextButton.TextSize = 18
