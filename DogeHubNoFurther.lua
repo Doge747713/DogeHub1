@@ -30,6 +30,7 @@ end
 local ScreenGui = Instance.new("ScreenGui")
 ScreenGui.Name = "KeyGui"
 ScreenGui.Parent = game.CoreGui
+wait(1)
 
 -- Create a background frame for better aesthetics
 local BackgroundFrame = Instance.new("Frame")
