@@ -7,12 +7,12 @@ local targetHead = nil
 local aimingTarget = nil
 local keys = {
     "000377X99100E887e99F938Nf",
-    "e7gv9GTN5RJ8cAKjfwW4ayHb3dBkZqYDQmXsnMzLFVUxPu2thC",
-    "KvHAkcZLJfG5BWbPRgnymwQzqXCrpuYs47FUxjSh8TVD6d9ea2",
+    "xDTkErqYYf2XuyQMszj6jm", --ömer
+    "qT81680yv7GBFhdZGJ0Bug", --özer
     "Garland_Ozel_Sifre",
-    "ZszayMDBgn7verQSNW5VGtRUqJfPjxuAw3kHKcC9mh6XTF4E2p",
+    "Ejf2YZdhauGY35MGDVbB6Y", --garland
     "Dogebest",
-    "jDP2aNqVKJfQ6RHyGTMew7hA9ZvcLd5WgSzkxtFC8X3ubYmUnE",
+    "Z1dnNh5NBqgT2EBreZG61u",
     -- Add more keys here if needed
 }
 
