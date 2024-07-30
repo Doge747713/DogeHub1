@@ -207,18 +207,17 @@ end
 function toggleGrass()
     grassVisible = not grassVisible
 
-    local terrain = workspace:FindFirstChildOfClass("Terrain")
-    if terrain then
-        for _, child in ipairs(terrain:GetDescendants()) do
-            if child:IsA("BasePart") and child.Name:lower():find("grass") then
-                child.Transparency = grassVisible and 0 or 1
+    -- Loop through all terrain decoration instances
+    for _, terrain in ipairs(workspace:GetDescendants()) do
+        if terrain:IsA("Terrain") then
+            for _, decoration in ipairs(terrain:GetChildren()) do
+                if decoration:IsA("Decoration") and decoration.Name:lower():find("grass") then
+                    decoration.Transparency = grassVisible and 0 or 1
+                end
             end
         end
-    else
-        warn("Terrain not found in workspace.")
     end
 end
-
 
 -- Function to smoothly change the RGB color of the title label's text
 local function animateTitleColor()
