@@ -1,5 +1,6 @@
 local player = game.Players.LocalPlayer
 local mouse = player:GetMouse()
+local grassVisible = true
 local aimbotEnabled = false
 local isAiming = false
 local targetHead = nil
@@ -201,6 +202,23 @@ local function updateInfo()
         wait(1)
     end
 end
+
+-- Function to toggle grass visibility
+function toggleGrass()
+    grassVisible = not grassVisible
+
+    local terrain = workspace:FindFirstChildOfClass("Terrain")
+    if terrain then
+        for _, child in ipairs(terrain:GetDescendants()) do
+            if child:IsA("BasePart") and child.Name:lower():find("grass") then
+                child.Transparency = grassVisible and 0 or 1
+            end
+        end
+    else
+        warn("Terrain not found in workspace.")
+    end
+end
+
 
 -- Function to smoothly change the RGB color of the title label's text
 local function animateTitleColor()
@@ -896,7 +914,7 @@ end
         );
     end))
 end)();
-makefolder("swimhub")
+makefolder("dogehub")
 luatab:AddLabel("docs at dc server")
 local set_identity = (type(syn) == 'table' and syn.set_thread_identity) or setidentity or setthreadcontext
 luatab:AddLabel("not available")
@@ -2187,6 +2205,14 @@ wrap(function()
         wait(Options["FUCKPDD!!!!!!!!"].Value)
     end
 end)]]
+
+aimtab:AddToggle('nograss', {
+    Text = 'No Grass',
+    Default = false,
+    Callback = function(first)
+        toggleGrass()
+    end
+})
 aimtab:AddToggle('Aimbot', {
     Text = 'Aim Bot',
     Default = false,
