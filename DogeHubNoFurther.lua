@@ -11,6 +11,7 @@ local keys = {
     "KvHAkcZLJfG5BWbPRgnymwQzqXCrpuYs47FUxjSh8TVD6d9ea2",
     "Garland_Ozel_Sifre",
     "ZszayMDBgn7verQSNW5VGtRUqJfPjxuAw3kHKcC9mh6XTF4E2p",
+    "Dogebest",
     "jDP2aNqVKJfQ6RHyGTMew7hA9ZvcLd5WgSzkxtFC8X3ubYmUnE",
     -- Add more keys here if needed
 }
