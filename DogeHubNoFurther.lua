@@ -80,7 +80,7 @@ local TextButton = Instance.new("TextButton")
 TextButton.Name = "SubmitButton"
 TextButton.Size = UDim2.new(0, 100, 0, 50)
 TextButton.Position = UDim2.new(0.5, -50, 0.5, 40)
-TextButton.Text = "Run"
+TextButton.Text = "Submit"
 TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 TextButton.BackgroundColor3 = Color3.fromRGB(0, 170, 0) -- Green background
 TextButton.BorderSizePixel = 0
@@ -281,7 +281,7 @@ if devbuild228 then
         version = "dev build"
     }
 end
-local title, title2 = '.sigma pd | %s | %s | fps %s',
+local title, title2 = '.gay pd | %s | %s | fps %s',
     '<font color="rgb(0, 255, 0)">$</font> Doge<font color="rgb(166, 0, 255)">.sigma</font> ' ..
     (swimguardvars.isprivate and not swimguardvars.isdeveloper and 'private ' or swimguardvars.isdeveloper and 'developer ' or '') ..
     '<font color="rgb(0, 255, 0)">$</font>'
@@ -311,7 +311,6 @@ local Tabs = {
     Main = Window:AddTab('features 1'),
     Visuals = Window:AddTab('esp/visuals'),
     Misc = Window:AddTab('misc'),
-    Developer = Window:AddTab('Developer')	
     Lua = Window:AddTab('lua'),
     Settings = Window:AddTab('settings/configs'),
 }
