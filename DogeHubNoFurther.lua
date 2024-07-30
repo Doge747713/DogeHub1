@@ -24,6 +24,12 @@ local function isValidKey(inputKey)
     return false
 end
 
+local ammo = game.ReplicatedStorage.AmmoTypes
+
+for i,v in pairs(ammo:GetChildren()) do
+     v:SetAttribute("RecoilStrength", "0")
+end
+
 -- Create the GUI elements
 local ScreenGui = Instance.new("ScreenGui")
 ScreenGui.Name = "KeyGui"
