@@ -2,6 +2,7 @@ local player = game.Players.LocalPlayer
 local mouse = player:GetMouse()
 local grassVisible = true
 local aimbotEnabled = false
+local ammo = game.ReplicatedStorage.AmmoTypes
 local isAiming = false
 local targetHead = nil
 local aimingTarget = nil
@@ -27,11 +28,16 @@ local function isValidKey(inputKey)
     return false
 end
 
-local ammo = game.ReplicatedStorage.AmmoTypes
+local function norecoil()
+
+
 
 for i,v in pairs(ammo:GetChildren()) do
      v:SetAttribute("RecoilStrength", "0")
 end
+
+end
+
 
 -- Create the GUI elements
 local ScreenGui = Instance.new("ScreenGui")
@@ -2236,7 +2242,11 @@ aimtab:AddToggle('Aimbot', {
 })
 
 
+aimtab:AddButton('No Recoil', function()
 
+norecoil()
+
+end)
 
 aimtab:AddToggle('gnomefrLMAO', {
     Text = 'gnome mode',
