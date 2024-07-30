@@ -114,37 +114,36 @@ while not shouldExecute do
     wait(1) -- Wait until the key is validated and shouldExecute is true
 end
 
+function toggleAimbot()
+    aimbotEnabled = not aimbotEnabled -- Toggle the state
 
--- Aimbot'u açıp kapama fonksiyonu
-local function toggleAimbot()
-    aimbotEnabled = not aimbotEnabled -- Durumu değiştir
     if not aimbotEnabled then
-        isAiming = false -- Aimbot kapatıldığında nişan almayı sıfırla
-        targetHead = nil -- Hedef başını temizle
+        isAiming = false -- Reset aiming when disabling
+        targetHead = nil -- Clear target head
     end
 end
 
--- NPC veya oyuncunun başını hedefleme ve hangi bölgeye nişan aldığını yazdırma fonksiyonu
-local function updateAimbot()
+-- Function to lock the aim on the NPC's head and print body part
+function updateAimbot()
     if aimbotEnabled then
         if isAiming and not targetHead then
-            local target = Mouse.Target -- Farenin şu anda işaret ettiği nesneyi al
+            local target = mouse.Target -- Get the object the mouse is currently over
 
-            -- Hedef NPC veya oyuncu karakteri mi kontrol et
+            -- Check if the target is an NPC character
             if target and target.Parent then
-                -- NPC veya oyuncu karakter modeli mi kontrol et
-                local character = target.Parent
-                if character:FindFirstChild("Humanoid") and character:FindFirstChild("Head") then
-                    targetHead = character.Head -- Hedef başını NPC veya oyuncunun başına ayarla
+                -- Check if the target is part of an NPC character model
+                local npcModel = target.Parent
+                if npcModel:FindFirstChild("Humanoid") and npcModel:FindFirstChild("Head") then
+                    targetHead = npcModel.Head -- Set target head to the NPC's head
 
-                    -- Hangi vücut kısmına nişan aldığımızı belirle
+                    -- Determine which part we are aiming at
                     local targetPosition = targetHead.Position
-                    local characterPosition = character.PrimaryPart.Position -- PrimaryPart'ın doğru ayarlandığından emin olun
+                    local characterPosition = npcModel.PrimaryPart.Position -- Assuming PrimaryPart is set correctly
 
-                    -- Hedefin offset pozisyonunu hesapla
+                    -- Calculate the offset position of the target
                     local offset = (targetPosition - characterPosition).unit
 
-                    -- Hangi vücut kısmına nişan aldığımızı yazdır
+                    -- Print which body part we are aiming at
                     if (targetPosition - characterPosition).magnitude < 2 then
                         print("Aiming at: Head")
                     elseif offset.Y > 0.5 then
@@ -158,30 +157,29 @@ local function updateAimbot()
             end
         end
 
-        -- Nişan alma
+        -- Aim at the target's head if aiming
         if isAiming and targetHead then
-            -- Hedefin başına düzgün bir şekilde nişan al
-            local direction = (targetHead.Position - Camera.CFrame.Position).unit
-            Camera.CFrame = CFrame.new(Camera.CFrame.Position, targetHead.Position)
+            -- Smoothly aim at the target's head
+            local direction = (targetHead.Position - workspace.CurrentCamera.CFrame.Position).unit
+            workspace.CurrentCamera.CFrame = CFrame.new(workspace.CurrentCamera.CFrame.Position, targetHead.Position)
         end
     end
 end
 
--- Sağ fare tuşu basıldığında giriş işlemleri
-Mouse.Button2Down:Connect(function()
+-- Input handling for right mouse button
+mouse.Button2Down:Connect(function()
     if aimbotEnabled then
-        isAiming = true -- Sağ fare tuşuna basıldığında nişan almayı başlat
+        isAiming = true -- Start aiming when right mouse button is held down
     end
 end)
 
-Mouse.Button2Up:Connect(function()
-    isAiming = false -- Sağ fare tuşu bırakıldığında nişan almayı durdur
-    targetHead = nil -- Sağ fare tuşu bırakıldığında hedefi kilitle
+mouse.Button2Up:Connect(function()
+    isAiming = false -- Stop aiming when right mouse button is released
+    targetHead = nil -- Unlock the target when the right mouse button is released
 end)
 
--- Aimbot'u güncellemek için Heartbeat bağlantısı
-RunService.Heartbeat:Connect(updateAimbot
-	
+-- Heartbeat connection to update aimbot
+game:GetService("RunService").Heartbeat:Connect(updateAimbot)
 
 -- Function to get the ping
 local function getPing()
