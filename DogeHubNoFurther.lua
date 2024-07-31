@@ -8,7 +8,7 @@ local targetHead = nil
 local aimingTarget = nil
 local keys = {
     "000377X99100E887e99F938Nf",
-    "xDTkErqYYf2XuyQMszj6jm", --ömer
+ --   "xDTkErqYYf2XuyQMszj6jm", --ömer
     "qT81680yv7GBFhdZGJ0Bug", --özer
     "Garland_Ozel_Sifre",
     "Ejf2YZdhauGY35MGDVbB6Y", --garland
