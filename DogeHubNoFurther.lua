@@ -2248,6 +2248,14 @@ norecoil()
 
 end)
 
+aimtab:AddToggle('gnomefrLMAO2', {
+    Text = 'Gnome Mode 2',
+    Default = false,
+
+    Callback = function(first)
+        game.ReplicatedStorage.Remotes.UpdateTilt:FireServer(first and 3 / 7 or -4)
+    end
+
 aimtab:AddToggle('gnomefrLMAO', {
     Text = 'gnome mode',
     Default = false,
