@@ -2205,7 +2205,7 @@ end)]]
 aimtab:AddToggle('nograss', {
     Text = 'No Grass',
     Default = false,
-    Tooltip = 'Removes Grasses (Not working)'
+    Tooltip = 'Removes Grasses (Not working)',
     Callback = function(first)
         toggleGrass()
     end
