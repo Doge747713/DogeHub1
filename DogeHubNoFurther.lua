@@ -5,6 +5,7 @@ local aimbotEnabled = false
 local ammo = game.ReplicatedStorage.AmmoTypes
 local isAiming = false
 local targetHead = nil
+local targetPart = "Head" -- Default target part
 local aimingTarget = nil
 local keys = {
     "000377X99100E887e99F938Nf",
@@ -132,45 +133,33 @@ function toggleAimbot()
     end
 end
 
--- Function to lock the aim on the NPC's head and print body part
+-- Function to lock the aim on the selected part
 function updateAimbot()
     if aimbotEnabled then
-        if isAiming and not targetHead then
+        if isAiming then
             local target = mouse.Target -- Get the object the mouse is currently over
 
             -- Check if the target is an NPC character
             if target and target.Parent then
                 -- Check if the target is part of an NPC character model
                 local npcModel = target.Parent
-                if npcModel:FindFirstChild("Humanoid") and npcModel:FindFirstChild("Head") then
-                    targetHead = npcModel.Head -- Set target head to the NPC's head
+                if npcModel:FindFirstChild("Humanoid") then
+                    -- Determine the target part based on the dropdown selection
+                    if targetPart == "Head" and npcModel:FindFirstChild("Head") then
+                        targetHead = npcModel.Head -- Set target head to the NPC's head
+                    elseif targetPart == "HumanoidRootPart" and npcModel:FindFirstChild("HumanoidRootPart") then
+                        targetHead = npcModel.HumanoidRootPart -- Set target to HumanoidRootPart
+                    end
 
-                    -- Determine which part we are aiming at
-                    local targetPosition = targetHead.Position
-                    local characterPosition = npcModel.PrimaryPart.Position -- Assuming PrimaryPart is set correctly
+                    -- Aim at the selected target part if it exists
+                    if targetHead then
+                        local targetPosition = targetHead.Position
 
-                    -- Calculate the offset position of the target
-                    local offset = (targetPosition - characterPosition).unit
-
-                    -- Print which body part we are aiming at
-                    if (targetPosition - characterPosition).magnitude < 2 then
-                        print("Aiming at: Head")
-                    elseif offset.Y > 0.5 then
-                        print("Aiming at: Head")
-                    elseif offset.Y < -0.5 then
-                        print("Aiming at: Feet")
-                    else
-                        print("Aiming at: Torso")
+                        -- Smoothly aim at the target part
+                        workspace.CurrentCamera.CFrame = CFrame.new(workspace.CurrentCamera.CFrame.Position, targetPosition)
                     end
                 end
             end
-        end
-
-        -- Aim at the target's head if aiming
-        if isAiming and targetHead then
-            -- Smoothly aim at the target's head
-            local direction = (targetHead.Position - workspace.CurrentCamera.CFrame.Position).unit
-            workspace.CurrentCamera.CFrame = CFrame.new(workspace.CurrentCamera.CFrame.Position, targetHead.Position)
         end
     end
 end
@@ -2216,12 +2205,14 @@ end)]]
 aimtab:AddToggle('nograss', {
     Text = 'No Grass',
     Default = false,
+    Tooltip = 'Removes Grasses (Not working)'
     Callback = function(first)
         toggleGrass()
     end
 })
 aimtab:AddToggle('Aimbot', {
     Text = 'Aim Bot',
+    Tooltip = 'Locks To Head Or Torso',
     Default = false,
 
     Callback = function(first)
@@ -2241,6 +2232,18 @@ aimtab:AddToggle('Aimbot', {
     end,
 })
 
+aimtab:AddDropdown('aimbottargetpart', {
+    Values = { 'HumanoidRootPart', 'Head' },
+    Default = 2,
+    Multi = false,
+    Text = 'Aimbot Target Part',
+    Tooltip = 'Select a part for targeting (Aimbot)',
+    Callback = function(Value)
+        targetPart = Value -- Update the target part based on dropdown selection
+    end
+})
+
+
 
 aimtab:AddButton('No Recoil', function()
 
@@ -2250,6 +2253,7 @@ end)
 
 aimtab:AddToggle('gnomefrLMAO', {
     Text = 'gnome mode',
+    Tooltip = 'Gnome Mode',
     Default = false,
 
     Callback = function(first)
