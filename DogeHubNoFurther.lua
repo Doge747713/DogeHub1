@@ -2275,6 +2275,7 @@ aimtab:AddToggle('gnomefrLMAO2', {
     Callback = function(first)
         game.ReplicatedStorage.Remotes.UpdateTilt:FireServer(first and -100 / 0 or 0)
     end
+})
 
 aimtab:AddToggle('gnomefrLMAO', {
     Text = 'gnome mode',
@@ -2284,6 +2285,8 @@ aimtab:AddToggle('gnomefrLMAO', {
     Callback = function(first)
         game.ReplicatedStorage.Remotes.UpdateTilt:FireServer(first and 0 / 0 or 0)
     end
+
+
 }):AddColorPicker('exitespcolor', {
     Default = Color3.new(1, 1, 1),
     Title = 'esp color',
