@@ -170,9 +170,9 @@ if devbuild228 then
     }
 end
 local title, title2 = '.sigma pd | %s | %s | fps %s',
-    '<font color="rgb(0, 255, 0)">$</font> Doge<font color="rgb(166, 0, 255)">.sigma</font> ' ..
-    (swimguardvars.isprivate and not swimguardvars.isdeveloper and 'private ' or swimguardvars.isdeveloper and 'developer ' or '') ..
-    '<font color="rgb(0, 255, 0)">$</font>'
+    '<font color="rgb(255, 213, 0)">$$</font> Doge<font color="rgb(166, 0, 255)">.sigma</font> ' ..
+    (swimguardvars.isprivate and not swimguardvars.isdeveloper and 'private ' or swimguardvars.isdeveloper and 'Private ' or '') ..
+    '<font color="rgb(255, 213, 0)">$$</font>'
 local loadprivate = swimguardvars.isprivate or swimguardvars.isdeveloper
 
 local function wrap(f) coroutine.resume(coroutine.create(f)) end
