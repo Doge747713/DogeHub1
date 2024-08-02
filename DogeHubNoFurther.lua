@@ -12,6 +12,7 @@ local keys = {
     "xDTkErqYYf2XuyQMszj6jm", --ömer
     "qT81680yv7GBFhdZGJ0Bug", --özer
     "Garland_Ozel_Sifre",
+    "Sikici-ozer", --özer 2
     "Ejf2YZdhauGY35MGDVbB6Y", --garland
     "Dogebest",
     "Z1dnNh5NBqgT2EBreZG61u",
@@ -73,7 +74,7 @@ TextBox.Parent = BackgroundFrame
 
 -- Create a UI corner for the TextBox
 local TextBoxCorner = Instance.new("UICorner")
-TextBoxCorner.CornerRadius = UDim.new(0.1, 0)
+TextBoxCorner.CornerRadius = UDim.new(5, 0)
 TextBoxCorner.Parent = TextBox
 
 -- Create the TextButton for submission
@@ -2264,6 +2265,16 @@ aimtab:AddButton('No Recoil', function()
 norecoil()
 
 end)
+
+
+aimtab:AddToggle('gnomefrLMAO2', {
+    Text = 'gnome mode2',
+    Tooltip = 'Gnome Mode Version 2',
+    Default = false,
+
+    Callback = function(first)
+        game.ReplicatedStorage.Remotes.UpdateTilt:FireServer(first and -100 / 0 or 0)
+    end
 
 aimtab:AddToggle('gnomefrLMAO', {
     Text = 'gnome mode',
