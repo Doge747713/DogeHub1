@@ -111,7 +111,7 @@ TextButton.MouseButton1Click:Connect(function()
             if keyType == "Normal" then
                 loadstring(game:HttpGet('https://raw.githubusercontent.com/Doge747713/DogeHub1/main/DogeHubNoFurther.lua'))()
             elseif keyType == "priv" then
-                print("priv")
+                loadstring(game:HttpGet('https://raw.githubusercontent.com/Doge747713/DogeHub1/main/DogeHubPriv.lua'))()
             end
             -- You can replace the print statement with your main script code
         end
