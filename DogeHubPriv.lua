@@ -162,14 +162,14 @@ local counter = 1
 local devbuild228 = not swimguardvars
 if devbuild228 then
     swimguardvars = {
-        user = "developer",
+        user = "Private",
         discordid = 716514203137081376,
         isprivate = true,
         isdeveloper = true,
-        version = "dev build"
+        version = "v1"
     }
 end
-local title, title2 = '.gay pd | %s | %s | fps %s',
+local title, title2 = '.sigma pd | %s | %s | fps %s',
     '<font color="rgb(0, 255, 0)">$</font> Doge<font color="rgb(166, 0, 255)">.sigma</font> ' ..
     (swimguardvars.isprivate and not swimguardvars.isdeveloper and 'private ' or swimguardvars.isdeveloper and 'developer ' or '') ..
     '<font color="rgb(0, 255, 0)">$</font>'
@@ -809,7 +809,7 @@ end
         );
     end))
 end)();
-makefolder("dogehub")
+makefolder("dogehubprivate")
 luatab:AddLabel("docs at dc server")
 local set_identity = (type(syn) == 'table' and syn.set_thread_identity) or setidentity or setthreadcontext
 luatab:AddLabel("not available")
