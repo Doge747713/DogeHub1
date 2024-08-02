@@ -124,6 +124,7 @@ while not shouldExecute do
     wait(1) -- Wait until the key is validated and shouldExecute is true
 end
 
+-- Function to toggle the aimbot
 function toggleAimbot()
     aimbotEnabled = not aimbotEnabled -- Toggle the state
 
@@ -150,15 +151,15 @@ function updateAimbot()
                     elseif targetPart == "HumanoidRootPart" and npcModel:FindFirstChild("HumanoidRootPart") then
                         targetHead = npcModel.HumanoidRootPart -- Set target to HumanoidRootPart
                     end
-
-                    -- Aim at the selected target part if it exists
-                    if targetHead then
-                        local targetPosition = targetHead.Position
-
-                        -- Smoothly aim at the target part
-                        workspace.CurrentCamera.CFrame = CFrame.new(workspace.CurrentCamera.CFrame.Position, targetPosition)
-                    end
                 end
+            end
+
+            -- Aim at the selected target part if it exists
+            if targetHead then
+                local targetPosition = targetHead.Position
+
+                -- Smoothly aim at the target part
+                workspace.CurrentCamera.CFrame = CFrame.new(workspace.CurrentCamera.CFrame.Position, targetPosition)
             end
         end
     end
@@ -178,6 +179,19 @@ end)
 
 -- Heartbeat connection to update aimbot
 game:GetService("RunService").Heartbeat:Connect(updateAimbot)
+
+-- Additional code to ensure the aimbot remains locked to the target
+function keepAimbotLocked()
+    if aimbotEnabled and isAiming and targetHead then
+        local targetPosition = targetHead.Position
+
+        -- Smoothly aim at the target part
+        workspace.CurrentCamera.CFrame = CFrame.new(workspace.CurrentCamera.CFrame.Position, targetPosition)
+    end
+end
+
+-- Heartbeat connection to ensure the aimbot remains locked
+game:GetService("RunService").Heartbeat:Connect(keepAimbotLocked)
 
 -- Function to get the ping
 local function getPing()
@@ -2266,6 +2280,7 @@ aimtab:AddToggle('gnomefrLMAO', {
 })
 aimtab:AddToggle('sil1e2nw5522', {
     Text = 'aimpoint = crosshair',
+    Tooltip = 'Aimpoint = Crosshair',
     Default = false,
 
     Callback = function(first)
@@ -2302,6 +2317,7 @@ pdlt.exitespfun = function(drop)
 end
 aimtab:AddToggle('exitesppdlt', {
     Text = 'exit esp',
+    Tooltip = 'Shows Exits',
     Default = false,
 
     Callback = function(first)
@@ -2559,6 +2575,7 @@ pdlt.AIespfun = function(drop)
 end
 aimtab:AddToggle('sil1e2nw22', {
     Text = 'corpse esp',
+    Tooltip = 'Shows Corpses',
     Default = false,
 
     Callback = function(first)
@@ -2586,6 +2603,7 @@ aimtab:AddToggle('sil1e2nw22', {
 })
 aimtab:AddToggle('sil21e2nw22', {
     Text = 'ai esp',
+    Tooltip = 'AI Esp',
     Default = false,
 
     Callback = function(first)
@@ -2635,6 +2653,7 @@ local function IsTargetVisible(target)
 end
 aimtab:AddToggle('silenw22', {
     Text = 'silent aim',
+    Tooltip = 'Silent Aim (Cooked)',
     Default = false,
 
     Callback = function(first)
@@ -2654,6 +2673,7 @@ aimtab:AddToggle('silenw22', {
 })
 aimtab:AddToggle('silen1w22', {
     Text = 'npc aim',
+    Tooltip = 'Npc Aim (Cooked)',
     Default = false,
 
     Callback = function(first)
@@ -2673,6 +2693,7 @@ aimtab:AddToggle('silen1w22', {
 })
 aimtab:AddToggle('si111123lenw22', {
     Text = 'wallcheck',
+    Tooltip = 'Wallcheck',
     Default = false,
 
     Callback = function(first)
@@ -2693,6 +2714,7 @@ aimtab:AddDropdown('SilentAimHitPartjb', {
 })
 aimtab:AddToggle('dra11wfov', {
     Text = 'draw fov',
+    Tooltip = 'Draw Fov',
     Default = false,
     Callback = function(first)
         pdlt.drawfov = first
@@ -2709,6 +2731,7 @@ aimtab:AddToggle('dra11wfov', {
 aimtab:AddToggle('fov11outline', {
     Text = 'draw fov outline',
     Default = false,
+    Tooltip = 'Draw Outline',
     Callback = function(first)
         pdlt.fovoutline = first
     end
