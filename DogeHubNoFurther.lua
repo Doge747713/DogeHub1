@@ -2057,7 +2057,7 @@ counter = counter + 1
 movetab:AddToggle('justspin', { Text = 'spin', Default = false, }):OnChanged(function(State)
     varsglobal.spin = State
 end)
-movetab:AddSlider('justspinspeed', { Text = 'spin speed', Default = 1, Min = 1, Max = 30, Rounding = 1, Compact = false })
+movetab:AddSlider('justspinspeed', { Text = 'spin speed', Default = 1, Min = 1, Max = 245, Rounding = 1, Compact = false })
     :OnChanged(function(State)
         varsglobal.spinspeed = State
     end)
@@ -2844,7 +2844,7 @@ do
             end
         })
     charactertab:AddSlider('flightspeed',
-        { Text = 'flight speed', Default = 5, Min = 0.1, Max = 6, Rounding = 1, Compact = true }):OnChanged(function(
+        { Text = 'flight speed', Default = 5, Min = 0.1, Max = 59, Rounding = 1, Compact = true }):OnChanged(function(
         first)
         gamesetting.flightspeed = first
     end)
