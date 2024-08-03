@@ -109,7 +109,7 @@ TextButton.MouseButton1Click:Connect(function()
         -- Place your script's main code here
         if shouldExecute then
             if keyType == "Normal" then
-                loadstring(game:HttpGet('https://raw.githubusercontent.com/Doge747713/DogeHub1/main/DogeHubNoFurther.lua'))()
+                loadstring(game:HttpGet('https://raw.githubusercontent.com/Doge747713/DogeHub1/main/DogeHubNormal.lua'))()
             elseif keyType == "priv" then
                 loadstring(game:HttpGet('https://raw.githubusercontent.com/Doge747713/DogeHub1/main/DogeHubPriv.lua'))()
             end
