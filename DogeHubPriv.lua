@@ -2142,6 +2142,13 @@ aimtab:AddDropdown('aimbottargetpart', {
     end
 })
 
+local function norecoil()
+
+for i,v in pairs(ammo:GetChildren()) do
+     v:SetAttribute("RecoilStrength", "0")
+end
+
+end
 
 
 aimtab:AddButton('No Recoil', function()
