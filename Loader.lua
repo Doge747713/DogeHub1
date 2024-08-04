@@ -13,14 +13,14 @@ local keys = {
 }
 
 local privatekeys = {
-    "wfh7pG7pzd8segQC9dR4UB",
-    "ZKW4tfRwRltrr2rPKwbBI2", --ömer
-    "8szUfrgEpfe3ucC7HOHVix", --özer
-    "YA7h55lTHoiQA5u9lu6yWy",
-    "SaLxk1UtbTgsphMmDnC322", --özer 2
-    "h8ETvyKzKaa9c4HjdyNuq7", --garland
+    "HVAQBEDhaduryyHQVatgMM",
+    "bnzHAMUTDPeTwbbKWfAvLv", --ömer
+    "cfhhcLqiKqUrNbucCRnXsH", --özer
+    "NkJNmjHanWQgYCytpoYrvH",
+    "wxAsMnmtZAFXDxnnrTyosT", --özer 2
+    "aXUVRuWAxAobVsCzVuYPnZ", --garland
     "Dogebestpriv",
-    "LLFUPQ9XYTX2M9Z2701ucL",
+    "fRtWKVPvRaqLeLnPeLXPAX",
     -- Add more keys here if needed
 }
 
