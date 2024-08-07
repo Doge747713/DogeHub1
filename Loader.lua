@@ -2,25 +2,24 @@ local player = game.Players.LocalPlayer
 local mouse = player:GetMouse()
 local keys = {
     "000377X99100E887e99F938Nf",
-    "xDTkErqYYf2XuyQMszj6jm", --ömer
-    "qT81680yv7GBFhdZGJ0Bug", --özer
-    "Garland_Ozel_Sifre",
+    "xDTkErqYYf2XuaQMszj6jm", --ömer
+    "qT81680yv7GBFhdZGJbBug", --özer
     "Sikici-ozer", --özer 2
-    "Ejf2YZdhauGY35MGDVbB6Y", --garland
+    "Ejf2YZdhauGY11MGDVbB6Y", --garland
     "Dogebest",
-    "Z1dnNh5NBqgT2EBreZG61u",
+    "Z1dnNh5NBqgT2E44eZG61u",
     -- Add more keys here if needed
 }
 
 local privatekeys = {
     "HVAQBEnnaduryyHQVatgMM",
-    "bnaaAMUTDPeTwbbKbfAvLv", --ömer
-    "cfhhcLqiKqUrNbucCRnXvx", --özer
+    "bnaaAMUTDPeTwbbKbfAvLb", --ömer
+    "cfhhcLqiKqUrNbucCRnXey", --özer
     "NkJNmjHanWQgYCytpoYrvH",
-    "wxAsMnmtZAFXDxnnrddosT", --özer 2
-    "aXUVRuWAxAobVsCzauYPnZ", --garland
+    "wxAsMnmtZAFXDxnnrddnaa", --özer 2
+    "aXUVRuWAxAobVsCz88nPnZ", --garland
     "Dogebestpriv",
-    "fRtWKVPvRaqLeLnPeLXPAX",
+    "fRtWKVPvRaqLeLnPeLjjad",
     -- Add more keys here if needed
 }
 
