@@ -13,7 +13,7 @@ local keys = {
 
 local privatekeys = {
     "HVAQBEnnaduryyHQVatgMM",
-    "bnaaAMUTDPeTwbbKbfAvLb", --ömer
+    "bnaaAMUTDPeTwbbKbfAggb", --ömer
     "cfhhcLqiKqUrNbucCRnXey", --özer
     "NkJNmjHanWQgYCytpoYrvH",
     "wxAsMnmtZAFXDxnnrddnaa", --özer 2
