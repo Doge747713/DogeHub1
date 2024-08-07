@@ -115,21 +115,10 @@ function toggleGrass()
     end
 end
 
--- Function to smoothly change the RGB color of the title label's text
-local function animateTitleColor()
-    local h = 0
-    while true do
-        local color = Color3.fromHSV(h, 1, 1)
-        h = h + 0.01
-        if h >= 1 then h = 0 end
-        titleLabel.TextColor3 = color
-        wait(0.1)
-    end
-end
+-- Function to smoothly change the RGB color of the title label's tex
 
 -- Start the info update and RGB animation
 --spawn(updateInfo)
-spawn(animateTitleColor)
 
 
 if not LPH_OBFUSCATED then
